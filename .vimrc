@@ -21,7 +21,7 @@ set scrolloff=10
 "set colorcolumn=80
 "highlight ColorColumn ctermbg=0 guibg=lightgrey
 set background=dark
-set cmdheight=1
+set cmdheight=2
 
 set path+=**
 set wildmenu
