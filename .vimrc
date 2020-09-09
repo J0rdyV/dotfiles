@@ -4,6 +4,7 @@ set nocompatible
 syntax enable
 filetype plugin on 
 
+set clipboard=unnamedplus
 set noerrorbells
 set smartindent
 set nu
@@ -15,13 +16,17 @@ set undodir=~/.vim/undodir
 set undofile
 set incsearch
 set t_ut=""
-set relativenumber
+"set relativenumber
 set cursorline
-set scrolloff=10
-"set colorcolumn=80
-"highlight ColorColumn ctermbg=0 guibg=lightgrey
-set background=dark
 set cmdheight=2
+set scrolloff=10
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+set background=dark
+let g:gruvbox_contrast_dark = 'hard'
+
+set timeout timeoutlen=200 ttimeoutlen=100
 
 set path+=**
 set wildmenu
@@ -42,7 +47,6 @@ let mapleader = " "
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" .,$s/authentication*\c/updates/gc
 nnoremap <Leader>s :.,$s/<C-r><C-w>*\c//gc<Left><Left><Left>
 " nnoremap <Leader>p :e .<CR>
 nnoremap <Leader>x :bd<CR>
@@ -54,13 +58,4 @@ nnoremap <Leader>f :Rg
 "nnoremap jk <C-c> 
 
 colorscheme gruvbox
-
-" WSL yank support
-let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
-if executable(s:clip)
-	augroup WSLYank
-		autocmd!
-		autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
-	augroup END
-endif
 
