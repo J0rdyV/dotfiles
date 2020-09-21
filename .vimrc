@@ -2,7 +2,7 @@
 set nocompatible
 
 syntax enable
-filetype plugin on 
+filetype plugin on
 
 set clipboard=unnamedplus
 set noerrorbells
@@ -32,15 +32,18 @@ set path+=**
 set wildmenu
 set wildignore+=**/vendor/**
 
+autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
+
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
-Plug 'vim-utils/vim-man'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
+Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'
 call plug#end()
 
 let mapleader = " "
@@ -55,7 +58,7 @@ nnoremap <Leader>gp :Gpush<CR>
 nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>p :bp<CR>
 nnoremap <Leader>f :Rg 
-"nnoremap jk <C-c> 
+imap jj <Esc>
 
 colorscheme gruvbox
 
