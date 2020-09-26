@@ -84,4 +84,5 @@ alias rdp='(){ xfreerdp /w:1920 /h:1000 /v:$1 ;}'
 alias orders='cd /srv/http/byod-orders'
 alias support='cd /srv/http/support-admin'
 alias batt='cat /sys/class/power_supply/BAT0/capacity'
+alias rm="rm -i"
 
