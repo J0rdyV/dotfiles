@@ -44,6 +44,7 @@ Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
+Plug 'unblevable/quick-scope'
 call plug#end()
 
 let mapleader = " "
@@ -62,3 +63,6 @@ imap jj <Esc>
 
 colorscheme gruvbox
 
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+highlight QuickScopePrimary guifg='#ebdbb2' gui=underline ctermfg=9 cterm=underline
+highlight QuickScopeSecondary guifg='#689d6a' gui=underline ctermfg=15 cterm=underline
