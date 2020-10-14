@@ -51,7 +51,8 @@ ZSH_THEME="lambda-gitster"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting vi-mode fancy-ctrl-z)
+#plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,4 +86,5 @@ alias orders='cd /srv/http/byod-orders'
 alias support='cd /srv/http/support-admin'
 alias batt='cat /sys/class/power_supply/BAT0/capacity'
 alias rm="rm -i"
+alias sloc="find -name '*.php' | xargs wc -l"
 
