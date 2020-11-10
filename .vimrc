@@ -9,17 +9,20 @@ set noerrorbells
 set smartindent
 set nu
 set nowrap
-set smartcase
+set ignorecase
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
 set t_ut=""
-"set relativenumber
+set relativenumber
 set cursorline
 set cmdheight=2
 set scrolloff=10
+set tabstop=4
+set shiftwidth=4
+"set autoindent
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
