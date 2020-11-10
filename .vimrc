@@ -35,7 +35,7 @@ set path+=**
 set wildmenu
 set wildignore+=**/vendor/**
 
-autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,java,php,wiki autocmd BufWritePre <buffer> %s/\s\+$//e
 
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
