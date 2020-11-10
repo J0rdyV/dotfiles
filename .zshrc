@@ -87,4 +87,7 @@ alias support='cd /srv/http/support-admin'
 alias batt='cat /sys/class/power_supply/BAT0/capacity'
 alias rm="rm -i"
 alias sloc="find -name '*.php' | xargs wc -l"
+alias weather="curl wttr.in"
+
+export PATH=$PATH:/home/jordy/.local/bin
 
