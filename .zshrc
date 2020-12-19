@@ -85,9 +85,12 @@ alias rdp='(){ xfreerdp /w:1920 /h:1000 /v:$1 ;}'
 alias orders='cd /srv/http/byod-orders'
 alias support='cd /srv/http/support-admin'
 alias batt='cat /sys/class/power_supply/BAT0/capacity'
-alias rm="rm -i"
+alias rm='rm -i'
 alias sloc="find -name '*.php' | xargs wc -l"
-alias weather="curl wttr.in"
+alias weather='curl wttr.in'
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
 
 export PATH=$PATH:/home/jordy/.local/bin
 
