@@ -5,13 +5,15 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Fira Code Retina:size=8" };
-static const char dmenufont[]       = "Fira Code Retina:size=8";
+static const int gappx              = 0;        /* gap pixel between windows */
+static const char *fonts[]          = { "Fira Code Retina:size=11" };
+static const char dmenufont[]       = "Fira Code Retina:size=11";
 static const char col_gray1[]       = "#1d2021";
 static const char col_gray2[]       = "#504945";
 static const char col_gray3[]       = "#7c6f64";
 static const char col_gray4[]       = "#ebdbb2";
-static const char col_cyan[]        = "#458588";
+//static const char col_cyan[]        = "#458588";
+static const char col_cyan[]        = "#3c3836";
 //static const char col_gray1[]       = "#222222";
 //static const char col_gray2[]       = "#444444";
 //static const char col_gray3[]       = "#bbbbbb";
@@ -24,7 +26,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "%&", "7[", "5{", "3}", "1(", "9=", "0*", "2)", "4+", "6]", "8!" };
+static const char *tags[] = { "com", "rdp", "web", "dev", "sql" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -63,10 +65,11 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char slockcomm[]       = "Locked at $(date '+%H:%M:%S')";
+static const char *termcmd[]  = { "alacritty", NULL };
+static const char *cooltermcmd[]  = { "cool-retro-term", NULL };
+static const char slockcomm[]       = "Locked at $(date +%F_%T)";
 static const char *slock[]  = { "slock", "-m", slockcomm, NULL };
-static const char *screenshot[]  = { "screen", NULL };
+static const char *screenshot[]  = { "/usr/bin/screen", NULL };
 static const char *clipmenucmd[] = { "clipmenu", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 
 static Key keys[] = {
@@ -74,16 +77,18 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = clipmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_minus,  spawn,          {.v = cooltermcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	//{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+	//{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
+	//{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+	{ MODKEY,             			XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -95,18 +100,18 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
+	TAGKEYS(                        XK_a,                      0)
+	TAGKEYS(                        XK_o,                      1)
+	TAGKEYS(                        XK_e,                      2)
+	TAGKEYS(                        XK_u,                      3)
+	TAGKEYS(                        XK_i,                      4)
 	TAGKEYS(                        XK_6,                      5)
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_u,      spawn,          {.v = screenshot } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
-	{ MODKEY,                       XK_s,      spawn,          {.v = screenshot } },
 };
 
 /* button definitions */
