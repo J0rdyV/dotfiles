@@ -3,8 +3,8 @@ redshift -O 4500K &
 xbacklight -set 70 &
 numlockx &
 clipmenud &
-feh --bg-fill ~/Wallpapers/arch.png &
+feh --bg-fill ~/Wallpapers/gruvbox.png &
 /home/jordy/personal/dwmtime/dwmtime.sh &
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
+xset r rate 300 50 &	# Speed xrate up
+unclutter &		# Remove mouse when idle
 exec dwm
