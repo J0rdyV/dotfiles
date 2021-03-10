@@ -20,7 +20,7 @@ feh --bg-fill ~/Wallpapers/2.JPG --auto-rotate &
 xcompmgr &
 
 # Exec time script to show time and battery in dwm title
-/home/jordy/personal/dwmtime/dwmtime.sh &
+~/dotfiles/scripts/dwmtime.sh &
 
 # Speed up xrate
 xset r rate 300 50 &
