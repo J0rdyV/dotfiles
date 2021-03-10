@@ -14,7 +14,7 @@ numlockx &
 clipmenud &
 
 # Set wallpaper
-feh --bg-fill ~/Wallpapers/2.JPG --auto-rotate &
+feh --bg-fill ~/dotfiles/images/wallpaper.jpeg --auto-rotate &
 
 # Enable opacity
 xcompmgr &
