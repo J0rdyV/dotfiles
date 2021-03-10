@@ -4,6 +4,9 @@ export ZSH="/home/jordy/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="lambda-gitster"
 
+# New line before prompt
+precmd() { print "" }
+
 # Set list of themes to pick from when loading at random
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 

@@ -35,19 +35,27 @@ set wildmode=longest,list,full
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	" Colorscheme
 	Plug 'morhetz/gruvbox'
+
+	" Function
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'jremmen/vim-ripgrep'
 	Plug 'tpope/vim-fugitive'
 	Plug 'kien/ctrlp.vim'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vimwiki/vimwiki'
+
+	" Extensibility
+	Plug 'tpope/vim-surround'
+	Plug 'tpope/vim-commentary'
+	Plug 'vim-scripts/ReplaceWithRegister'
 	Plug 'unblevable/quick-scope'
 
-	"Testing
-	Plug 'tpope/vim-surround'
+	" Testing
 	Plug 'junegunn/goyo.vim'
 	Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+	Plug 'kezhenxu94/vim-mysql-plugin'
 
 call plug#end()
 
@@ -62,7 +70,7 @@ colorscheme gruvbox
 set timeout timeoutlen=200 ttimeoutlen=100
 
 " Remove trailing
-autocmd FileType c,cpp,java,html,php,wiki autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,css,java,html,php,wiki autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Restore cursor position
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -75,6 +83,7 @@ nnoremap <Leader>s :.,$s/<C-r><C-w>*\c//gc<Left><Left><Left>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>g :G<CR>
 nnoremap <Leader>gp :Gpush<CR>
+nnoremap <Leader>gc :Gcommit -S<CR>
 nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>F :Rg<Space>
 nnoremap <Leader>f :CocSearch<Space>
@@ -84,6 +93,9 @@ map <leader>v :!opout <c-r>%<CR><CR>
 imap jj <Esc>
 inoremap <C-c> <esc>
 inoremap <C-H> <C-W>
+
+" allow the . to execute once for each line of a visual selection
+vnoremap . :normal .<CR>
 
 " Split navigation
 map <C-h> <C-w>h
