@@ -76,32 +76,61 @@ autocmd FileType c,cpp,css,java,html,php,wiki autocmd BufWritePre <buffer> %s/\s
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Remaps
-let mapleader = " "
-map <F7> :setlocal spell! spelllang=nl<CR>
-map <F8> :setlocal spell! spelllang=en_gb<CR>
-nnoremap <Leader>s :.,$s/<C-r><C-w>*\c//gc<Left><Left><Left>
-nnoremap <Leader>x :bd<CR>
-nnoremap <Leader>g :G<CR>
-nnoremap <Leader>gp :Gpush<CR>
-nnoremap <Leader>gc :Gcommit -S<CR>
-nnoremap <Leader>n :bn<CR>
-nnoremap <Leader>F :Rg<Space>
-nnoremap <Leader>f :CocSearch<Space>
-nnoremap <Leader>p :CtrlP<CR>
-nnoremap S :%s//g<Left><Left>
-map <leader>v :!opout <c-r>%<CR><CR>
-imap jj <Esc>
-inoremap <C-c> <esc>
-inoremap <C-H> <C-W>
 
-" allow the . to execute once for each line of a visual selection
-vnoremap . :normal .<CR>
+	" Map leader key
+	let mapleader = " "
 
-" Split navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+	" Spell checker
+	map <F7> :setlocal spell! spelllang=nl<CR>
+	map <F8> :setlocal spell! spelllang=en_gb<CR>
+
+	" Substitute current word
+	nnoremap <Leader>s :.,$s/<C-r><C-w>*\c//gc<Left><Left><Left>
+
+	" Delete buffer
+	nnoremap <Leader>x :bd<CR>
+
+	" Next buffer
+	nnoremap <Leader>n :bn<CR>
+
+	" Open Git fugitive tab
+	nnoremap <Leader>g :G<CR>
+
+	" Git commit
+	nnoremap <Leader>gc :Gcommit -S<CR>
+
+	" Git push
+	nnoremap <Leader>gp :Gpush<CR>
+
+	" Ripgrep search
+	nnoremap <Leader>f :Rg<Space>
+
+	" Coc Search
+	nnoremap <Leader>F :CocSearch<Space>
+
+	" Open file
+	nnoremap <Leader>p :CtrlP<CR>
+
+	" Minimal editor
+	nnoremap <leader>h :Goyo<CR>
+
+	" Force Ctrl+C to ESC key
+	inoremap <C-c> <esc>
+
+	" GoTo code navigation
+	nmap <silent> gd <Plug>(coc-definition)
+	nmap <silent> gy <Plug>(coc-type-definition)
+	nmap <silent> gi <Plug>(coc-implementation)
+	nmap <silent> gr <Plug>(coc-references)
+
+	" allow the . to execute once for each line of a visual selection
+	vnoremap . :normal .<CR>
+
+	" Split navigation
+	map <C-h> <C-w>h
+	map <C-j> <C-w>j
+	map <C-k> <C-w>k
+	map <C-l> <C-w>l
 
 " QuickScope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
