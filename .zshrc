@@ -85,7 +85,7 @@ bindkey -M vicmd v edit-command-line
 # Set personal aliases
 alias yt='(){ youtube-dl --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3 -i $1 ;}'
 alias rdp='(){ xfreerdp /w:1920 /h:1000 /v:$1 ;}'
-alias orders='cd /srv/http/byod-orders'
+alias orders='cd /srv/http/byod-orders && bat .idea/TODO.md'
 alias support='cd /srv/http/support-admin'
 alias batt='cat /sys/class/power_supply/BAT0/capacity'
 alias rm='rm -i'
@@ -94,6 +94,7 @@ alias weather='curl wttr.in'
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
+alias gma='git checkout master && scripts/buildCss.sh && composer install && composer update'
 
 export PATH=$PATH:/home/jordy/.local/bin
 
