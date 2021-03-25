@@ -30,7 +30,7 @@ set tabstop=4
 set shiftwidth=4
 
 " Autocomplete
-set wildmode=longest,list,full
+"set wildmode=longest,list,full
 
 " Plugins
 call plug#begin('~/.vim/plugged')
@@ -44,33 +44,38 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-fugitive'
 	Plug 'kien/ctrlp.vim'
 	Plug 'vim-airline/vim-airline'
-	Plug 'vimwiki/vimwiki'
+	"Plug 'vimwiki/vimwiki'
 
 	" Extensibility
 	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-commentary'
-	Plug 'vim-scripts/ReplaceWithRegister'
 	Plug 'unblevable/quick-scope'
 
 	" Testing
 	Plug 'junegunn/goyo.vim'
-	Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 	Plug 'kezhenxu94/vim-mysql-plugin'
 
 call plug#end()
 
 " Colors
+colorscheme gruvbox
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 set background=dark
 let g:gruvbox_contrast_dark = 'soft'
-colorscheme gruvbox
 
-" Fixes weird delays
-set timeout timeoutlen=200 ttimeoutlen=100
+" Enable transparenty
+let g:gruvbox_transparent_bg = 1
+autocmd VimEnter * hi Normal ctermbg=none
+
+" Enable powerline fonts
+let g:airline_powerline_fonts = 1
 
 " Remove trailing
-autocmd FileType c,cpp,css,java,html,php,wiki autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,css,java,html,php,wiki,vim autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" Start build script on save scss file
+au BufWritePost *.scss silent! !eval '[ -f "scripts/buildCss.sh" ] && scripts/buildCss.sh' &
 
 " Restore cursor position
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -148,32 +153,14 @@ inoremap <silent><expr> <Tab>
 	\ <SID>check_back_space() ? "\<Tab>" :
 	\ coc#refresh()
 
-" Function for toggling the bottom statusbar:
-let s:hidden_all = 0
-function! ToggleHiddenAll()
-	if s:hidden_all  == 0
-		let s:hidden_all = 1
-		set noshowmode
-		set noruler
-		set laststatus=0
-		set noshowcmd
-	else
-		let s:hidden_all = 0
-		set showmode
-		set ruler
-		set laststatus=2
-		set showcmd
-	endif
+" Writing
+function! Writer()
+	setlocal spell spelllang=en_gb
+	setlocal formatoptions=t1
+	setlocal textwidth=80
+	setlocal noautoindent
+	setlocal tabstop=5
+	setlocal expandtab
 endfunction
-nnoremap <leader>h :call ToggleHiddenAll()<CR>
-nnoremap <leader>H :Goyo<CR>
+com! WR call Writer()
 
-
-let g:firenvim_config = { 'localSettings': {} }
-let ls = g:firenvim_config['localSettings']
-let ls['signposthelp.zendesk.com'] = { 'selector': '.zendesk-editor--rich-text-comment', 'takeover': 'always' }
-
-"let ls['outlook.office.com'] = { 'selector': 'div[data-ogsc="#000000"]', 'takeover': 'always' }
-let ls['outlook.office.com'] = { 'selector': 'div[role="textbox"]', 'takeover': 'always' }
-autocmd BufEnter outlook.office.com_*.txt set filetype=markdown
-autocmd BufEnter signposthelp.zendesk.com_*.txt set filetype=markdown
