@@ -64,8 +64,8 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 export LANG=en_US.UTF-8
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # Completion navigation
 zmodload zsh/complist
@@ -94,7 +94,8 @@ alias weather='curl wttr.in'
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
-alias gma='git checkout master && scripts/buildCss.sh && composer install && composer update'
+alias gma='git checkout master && git pull && scripts/buildCss.sh && composer install && composer update'
+alias newsboat='newsboat -u ~/.config/newsboat/urls -C ~/.config/newsboat/config'
 
 export PATH=$PATH:/home/jordy/.local/bin
 
