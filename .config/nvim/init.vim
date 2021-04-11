@@ -49,11 +49,11 @@ call plug#begin('~/.vim/plugged')
 	" Extensibility
 	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-commentary'
-	Plug 'unblevable/quick-scope'
 
 	" Testing
 	Plug 'junegunn/goyo.vim'
 	Plug 'kezhenxu94/vim-mysql-plugin'
+	Plug 'ap/vim-css-color'
 
 call plug#end()
 
@@ -67,6 +67,9 @@ let g:gruvbox_contrast_dark = 'soft'
 " Enable transparenty
 let g:gruvbox_transparent_bg = 1
 autocmd VimEnter * hi Normal ctermbg=none
+
+" Enable Goyo for mutt
+autocmd BufRead,BufNewFile /tmp/neomutt* :Mail
 
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
@@ -117,7 +120,10 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	nnoremap <Leader>p :CtrlP<CR>
 
 	" Minimal editor
-	nnoremap <leader>h :Goyo<CR>
+	nnoremap <leader>h :Goyo \| set linebreak<CR>
+
+	" Mail editor
+	nnoremap <leader>m :Mail<CR>
 
 	" Force Ctrl+C to ESC key
 	inoremap <C-c> <esc>
@@ -154,13 +160,14 @@ inoremap <silent><expr> <Tab>
 	\ coc#refresh()
 
 " Writing
-function! Writer()
-	setlocal spell spelllang=en_gb
+function! Mail()
+	setlocal spell spelllang=nl
 	setlocal formatoptions=t1
 	setlocal textwidth=80
 	setlocal noautoindent
 	setlocal tabstop=5
 	setlocal expandtab
+	echo 'Enabled email writing mode'
 endfunction
-com! WR call Writer()
+com! Mail call Mail()
 
