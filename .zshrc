@@ -79,6 +79,9 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
+# Ctrl+Backspace to remove a word
+bindkey '^H' backward-kill-word
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 

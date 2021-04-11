@@ -83,7 +83,7 @@ au BufWritePost *.scss silent! !eval '[ -f "scripts/buildCss.sh" ] && scripts/bu
 " Restore cursor position
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" Remaps
+" Remaps / Bindings
 
 	" Map leader key
 	let mapleader = " "
@@ -94,6 +94,9 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 
 	" Substitute current word
 	nnoremap <Leader>s :.,$s/<C-r><C-w>*\c//gc<Left><Left><Left>
+
+	" Map Ctrl-Backspace to delete the previous word in insert mode.
+	imap <C-H> <C-W>
 
 	" Delete buffer
 	nnoremap <Leader>x :bd<CR>
