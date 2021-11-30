@@ -2,6 +2,9 @@
 export ZSH="/home/jordy/.oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="mh"
+
+# https://github.com/ergenekonyigit/lambda-gitster
 ZSH_THEME="lambda-gitster"
 
 # New line before prompt
@@ -88,12 +91,15 @@ bindkey '^H' backward-kill-word
 # Set personal aliases
 alias yt='(){ youtube-dl --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3 -i $1 ;}'
 alias rdp='(){ xfreerdp /w:1920 /h:1000 /v:$1 ;}'
-alias orders='cd /srv/http/byod-orders && bat .idea/TODO.md'
+alias webc='(){ v4l2-ctl -d /dev/video0 -c exposure_absolute=$1; }'
+alias bl='(){ sudo echo $1 > /sys/class/backlight/nv_backlight/brightness; }'
+alias t='task'
+alias orders='clear && cd /srv/http/byod-orders && bat .idea/TODO.md'
 alias support='cd /srv/http/support-admin'
 alias batt='cat /sys/class/power_supply/BAT0/capacity'
 alias rm='rm -i'
 alias sloc="find -name '*.php' | xargs wc -l"
-alias weather='curl wttr.in'
+alias weather='curl wttr.in/\?0pQ'
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
