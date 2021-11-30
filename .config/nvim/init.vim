@@ -42,20 +42,31 @@ call plug#begin('~/.vim/plugged')
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'jremmen/vim-ripgrep'
 	Plug 'tpope/vim-fugitive'
-	Plug 'kien/ctrlp.vim'
+	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'vim-airline/vim-airline'
-	"Plug 'vimwiki/vimwiki'
+	Plug 'vimwiki/vimwiki'
 
 	" Extensibility
 	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-commentary'
 
-	" Testing
-	Plug 'junegunn/goyo.vim'
-	Plug 'kezhenxu94/vim-mysql-plugin'
+	" Filetypes
+	Plug 'mechatroner/rainbow_csv'
 	Plug 'ap/vim-css-color'
 
+	" Snippets - https://medium.com/@jimeno0/snipets-in-vim-neovim-2ed9ab89befc
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
+
+	" Testing
+	Plug 'junegunn/goyo.vim'
+
 call plug#end()
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
 
 " Colors
 colorscheme gruvbox
@@ -123,7 +134,7 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	nnoremap <Leader>p :CtrlP<CR>
 
 	" Minimal editor
-	nnoremap <leader>h :Goyo \| set linebreak<CR>
+	nnoremap <leader>h :Goyo \| set linebreak \| set wrap<CR>
 
 	" Mail editor
 	nnoremap <leader>m :Mail<CR>
@@ -146,6 +157,13 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
 
+	"autoclose tags
+	" inoremap ( ()<Left>
+	" inoremap { {}<Left>
+	" inoremap [ []<Left>
+	" inoremap " ""<Left>
+	" inoremap ' ''<Left>
+
 " QuickScope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 highlight QuickScopePrimary guifg='#ebdbb2' gui=underline ctermfg=9 cterm=underline
@@ -164,13 +182,22 @@ inoremap <silent><expr> <Tab>
 
 " Writing
 function! Mail()
-	setlocal spell spelllang=nl
-	setlocal formatoptions=t1
-	setlocal textwidth=80
-	setlocal noautoindent
-	setlocal tabstop=5
-	setlocal expandtab
+	set spell spelllang=nl
+	set formatoptions=t1
+	set textwidth=80
+	set noautoindent
+	set tabstop=5
+	set expandtab
+	set wrap
 	echo 'Enabled email writing mode'
 endfunction
 com! Mail call Mail()
+
+function! ReformatHTML()
+	:s/<[^>]*>/\r&\r/g
+	:g/^$/d
+	normal gg=G
+	echo 'formatted to multiple lines'
+endfunction
+com! ReformatHTML call ReformatHTML()
 
