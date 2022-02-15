@@ -53,6 +53,7 @@ call plug#begin('~/.vim/plugged')
 	" Filetypes
 	Plug 'mechatroner/rainbow_csv'
 	Plug 'ap/vim-css-color'
+	Plug 'evidens/vim-twig'
 
 	" Snippets - https://medium.com/@jimeno0/snipets-in-vim-neovim-2ed9ab89befc
 	Plug 'SirVer/ultisnips'
@@ -80,13 +81,17 @@ let g:gruvbox_transparent_bg = 1
 autocmd VimEnter * hi Normal ctermbg=none
 
 " Enable Goyo for mutt
-autocmd BufRead,BufNewFile /tmp/neomutt* :Mail
+autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufReadPre <buffer> Mail()
+autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufWritePre <buffer> %s/$/<br>/
 
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
 
 " Remove trailing
-autocmd FileType c,cpp,css,java,html,php,wiki,vim autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,css,java,html,php,vimwiki,vim autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" vimwiki - default markdown
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
 
 " Start build script on save scss file
 au BufWritePost *.scss silent! !eval '[ -f "scripts/buildCss.sh" ] && scripts/buildCss.sh' &
@@ -122,7 +127,7 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	nnoremap <Leader>gc :Gcommit -S<CR>
 
 	" Git push
-	nnoremap <Leader>gp :Gpush<CR>
+	nnoremap <Leader>gp :Git push<CR>
 
 	" Ripgrep search
 	nnoremap <Leader>f :Rg<Space>
@@ -200,4 +205,3 @@ function! ReformatHTML()
 	echo 'formatted to multiple lines'
 endfunction
 com! ReformatHTML call ReformatHTML()
-
