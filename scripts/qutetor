@@ -1,0 +1,1 @@
+qutebrowser :"set content.proxy socks://localhost:9050/" -T

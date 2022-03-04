@@ -1,0 +1,1 @@
+xrandr --auto && xset r rate 200 60 && xrandr --output DP-1-2 --auto --output DP-1-1 --auto --left-of DP-1-2 --primary --auto --output eDP-1 --auto --left-of DP-1-1 && setxkbmap -layout dvorak
