@@ -18,13 +18,14 @@ clipmenud &
 # feh --bg-fill ~/dotfiles/images/wallpaper.jpeg &
 # feh --bg-fill ~/personal/wallpapers/DSCN1871.JPG &
 # feh --bg-fill ~/personal/wallpapers/yannick-pulver-ZwPuquZBnyM-unsplash.jpg &
-feh --bg-fill ~/personal/wallpapers/photo-1642201344145-0d49517e76e7.jpeg &
+# feh --bg-fill ~/personal/wallpapers/photo-1642201344145-0d49517e76e7.jpeg &
+pacgraph -o -e -n -s -b "#1d2021" -l "#7c6f64" -t "#458588" -d "#ebdbb2" -f "~/dotfiles/wallpaper" && feh --no-fehbg --bg-max ~/dotfiles/wallpaper.svg -B "#1d2021"
 
 # Enable opacity
 xcompmgr &
 
 # Exec time script to show time and battery in dwm title
-~/dotfiles/scripts/dwmtime.sh &
+dwmtime &
 
 # Speed up xrate
 # xset r rate 300 50 &
