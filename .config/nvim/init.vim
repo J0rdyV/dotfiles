@@ -6,7 +6,7 @@ filetype plugin indent on
 set backupcopy=yes
 
 " Show tabs
-set list listchars=nbsp:¬,tab:>·,trail:·,extends:>
+set list listchars=nbsp:¬,tab:>_,space:·,trail:·,extends:>
 
 " SETtings
 set encoding=utf-8
