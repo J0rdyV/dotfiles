@@ -29,10 +29,10 @@ color listfocus_unread yellow default bold
 color info red black bold
 color article white default bold
 
-browser "brave --incognito"
+browser "qutebrowser --target private-window"
 macro , open-in-browser-noninteractively
 macro y set browser "mpv" ; open-in-browser ; set browser linkhandler
-macro b set browser "brave --incognito" ; open-in-browser ; set browser linkhandler
+macro b set browser "qutebrowser --target private-window" ; open-in-browser ; set browser linkhandler
 macro w set browser "lynx" ; open-in-browser ; set browser linkhandler
 
 highlight all "---.*---" yellow

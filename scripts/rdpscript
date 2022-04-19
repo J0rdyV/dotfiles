@@ -1,0 +1,1 @@
+xfreerdp /d:[domain] /u:[username] /p:[password] /v:[server] /dynamic-resolution /kbd-lang:0x00010409
