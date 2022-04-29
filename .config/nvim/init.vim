@@ -18,7 +18,6 @@ set nowrap
 set ignorecase
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
 set undofile
 set incsearch
 set nohlsearch
@@ -33,7 +32,7 @@ set shiftwidth=4
 "set wildmode=longest,list,full
 
 " Plugins
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 	" Colorscheme
 	Plug 'morhetz/gruvbox'
@@ -91,7 +90,7 @@ let g:airline_powerline_fonts = 1
 autocmd FileType c,cpp,css,java,html,php,vimwiki,vim autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " vimwiki - default markdown
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
+let g:vimwiki_list = [{'path': '~/.config/nvim/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
 
 " Start build script on save scss file
 au BufWritePost *.scss silent! !eval '[ -f "scripts/buildCss.sh" ] && scripts/buildCss.sh' &

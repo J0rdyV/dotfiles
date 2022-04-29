@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/home/jordy/.oh-my-zsh"
+export ZSH="/home/jordy/.config/oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="mh"
+ZSH_THEME="mh"
 
 # https://github.com/ergenekonyigit/lambda-gitster
-ZSH_THEME="lambda-gitster"
+# ZSH_THEME="lambda-gitster"
 
 # New line before prompt
 precmd() { print "" }
@@ -57,8 +57,11 @@ precmd() { print "" }
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting vi-mode fancy-ctrl-z)
-#plugins=(git)
+# Add to .zshrc, before this plugin is loaded:
+# Use Control-D instead of Escape to switch to NORMAL mode
+# VIM_MODE_VICMD_KEY='^D'
+
+plugins=(git vi-mode fancy-ctrl-z)
 
 source $ZSH/oh-my-zsh.sh
 
