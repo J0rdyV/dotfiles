@@ -16,7 +16,7 @@ case "$1" in
     fi
     ;;
   "")
-    bash $0 list | dmenu -c -l 15 -nb "#1d2021" -nf "#7c6f64" -sb "#458588" -sf "#ebdbb2" -p 'Emoji: ' | bash $0 copy
+    bash $0 list | dmenu -p 'Emoji: ' | bash $0 copy
     ;;
 esac
 

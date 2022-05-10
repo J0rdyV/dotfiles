@@ -1,0 +1,1 @@
+lpass ls --format="%aN (%au)" | dmenu -c -l 15 | sed -e 's/.*\/\(.*\) (.*/\1/' | xargs -I % sh -c 'lpass show -cp "%"'

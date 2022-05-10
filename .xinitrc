@@ -19,10 +19,14 @@ clipmenud &
 feh --no-fehbg --bg-fill ~/personal/wallpapers/jokeFrima.jpg
 
 # Enable opacity
-xcompmgr &
+# xcompmgr &
 
 # Exec time script to show time and battery in dwm title
-dwmtime &
+# dwmtime &
+dwmblocks &
+
+# Notifications
+dunst &
 
 # Speed up xrate
 # xset r rate 300 50 &

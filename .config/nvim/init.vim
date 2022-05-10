@@ -44,6 +44,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vimwiki/vimwiki'
+	Plug 'mattn/calendar-vim'
 
 	" Extensibility
 	Plug 'tpope/vim-surround'
@@ -85,6 +86,10 @@ autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufWritePre <buffer> %s/$/<br>/
 
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
+
+" Fix calendar view
+let g:calendar_mark = 'left-fit'
+let g:calendar_monday = 1
 
 " Remove trailing
 autocmd FileType c,cpp,css,java,html,php,vimwiki,vim autocmd BufWritePre <buffer> %s/\s\+$//e
