@@ -109,6 +109,7 @@ alias gma='git checkout master && git pull && scripts/buildCss.sh && composer in
 alias newsboat='newsboat -u ~/.config/newsboat/urls -C ~/.config/newsboat/config'
 
 export PATH=$PATH:/home/jordy/.local/bin
+export GNUPGHOME="$HOME/.config/gnupg"
 
 SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 # eval "$(ssh-agent)"
