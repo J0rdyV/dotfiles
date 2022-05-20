@@ -1,2 +1,2 @@
 #!/bin/bash
-scrot -s /home/jordy/temp/screenshot$(date +%F).png -e 'xclip -selection c -t image/png < $f'
+scrot -s ~/.local/share/screenshot/screenshot$(date +%F).png -e 'xclip -selection c -t image/png < $f'
