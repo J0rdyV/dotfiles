@@ -48,10 +48,10 @@ alias \
 
 # Set personal aliases
 alias \
-	yt='(){ youtube-dl --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3 -i $1}' \
+	yt='(){yt-dlp --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3 -i $1}' \
 	rdp='(){ xfreerdp /w:1920 /h:1000 /v:$1 ;}' \
 	webc='(){ v4l2-ctl -d /dev/video0 -c exposure_absolute=$1; }' \
-	bl='(){ sudo echo $1 > /sys/class/backlight/nv_backlight/brightness; }' \
+	bl='(){ sudo echo $1 > /sys/class/backlight/amdgpu_bl0/brightness; }' \
 	t='task' \
 	i='timew' \
 	batt='cat /sys/class/power_supply/BAT0/capacity' \
