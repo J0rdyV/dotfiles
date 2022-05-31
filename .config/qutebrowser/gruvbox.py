@@ -292,7 +292,8 @@ c.colors.tabs.even.fg = c.colors.tabs.odd.fg
 c.colors.tabs.even.bg = bg3
 
 # Foreground color of selected odd tabs.
-c.colors.tabs.selected.odd.fg = fg2
+c.colors.tabs.selected.odd.fg = dark_blue
+# fg2
 
 # Background color of selected odd tabs.
 c.colors.tabs.selected.odd.bg = bg0
