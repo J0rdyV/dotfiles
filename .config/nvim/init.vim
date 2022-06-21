@@ -13,7 +13,7 @@ set encoding=utf-8
 set clipboard=unnamedplus
 set smartindent
 set nu
-set relativenumber
+" set relativenumber
 set nowrap
 set ignorecase
 set noswapfile
@@ -59,9 +59,6 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'SirVer/ultisnips'
 	Plug 'honza/vim-snippets'
 
-	" Testing
-	Plug 'junegunn/goyo.vim'
-
 call plug#end()
 
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -80,8 +77,9 @@ let g:gruvbox_contrast_dark = 'soft'
 let g:gruvbox_transparent_bg = 1
 autocmd VimEnter * hi Normal ctermbg=none
 
-" Enable Goyo for mutt
+" Enable mail writer for mutt
 autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufReadPre <buffer> Mail()
+" Add <br>'s to line endings in mails
 autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufWritePre <buffer> %s/$/<br>/
 
 " Enable powerline fonts
@@ -92,13 +90,10 @@ let g:calendar_mark = 'left-fit'
 let g:calendar_monday = 1
 
 " Remove trailing
-autocmd FileType c,cpp,css,java,html,php,vimwiki,vim autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,css,java,html,php,vimwiki,vim,md autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " vimwiki - default markdown
 let g:vimwiki_list = [{'path': '~/.config/nvim/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
-
-" Start build script on save scss file
-au BufWritePost *.scss silent! !eval '[ -f "scripts/buildCss.sh" ] && scripts/buildCss.sh' &
 
 " Restore cursor position
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -111,9 +106,6 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	" Spell checker
 	map <F7> :setlocal spell! spelllang=nl<CR>
 	map <F8> :setlocal spell! spelllang=en_gb<CR>
-
-	" Substitute current word
-	nnoremap <Leader>s :.,$s/<C-r><C-w>*\c//gc<Left><Left><Left>
 
 	" Map Ctrl-Backspace to delete the previous word in insert mode.
 	imap <C-H> <C-W>
@@ -128,7 +120,7 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	nnoremap <Leader>g :G<CR>
 
 	" Git commit
-	nnoremap <Leader>gc :Gcommit -S<CR>
+	nnoremap <Leader>gc :Git commit -S<CR>
 
 	" Git push
 	nnoremap <Leader>gp :Git push<CR>
@@ -141,9 +133,6 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 
 	" Open file
 	nnoremap <Leader>p :CtrlP<CR>
-
-	" Minimal editor
-	nnoremap <leader>h :Goyo \| set linebreak \| set wrap<CR>
 
 	" Mail editor
 	nnoremap <leader>m :Mail<CR>
@@ -165,29 +154,6 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
-
-	"autoclose tags
-	" inoremap ( ()<Left>
-	" inoremap { {}<Left>
-	" inoremap [ []<Left>
-	" inoremap " ""<Left>
-	" inoremap ' ''<Left>
-
-" QuickScope
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-highlight QuickScopePrimary guifg='#ebdbb2' gui=underline ctermfg=9 cterm=underline
-highlight QuickScopeSecondary guifg='#689d6a' gui=underline ctermfg=15 cterm=underline
-
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-	\ pumvisible() ? "\<C-n>" :
-	\ <SID>check_back_space() ? "\<Tab>" :
-	\ coc#refresh()
 
 " Writing
 function! Mail()
