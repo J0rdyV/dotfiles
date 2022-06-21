@@ -16,10 +16,10 @@ clipmenud &
 
 # Set wallpaper
 # pacgraph -o -e -n -s -b "#1d2021" -l "#7c6f64" -t "#458588" -d "#ebdbb2" -f "~/dotfiles/wallpaper" && feh --no-fehbg --bg-max ~/dotfiles/wallpaper.svg -B "#1d2021"
-feh --no-fehbg --bg-fill ~/personal/wallpapers/jokeFrima.jpg
 
 # Enable opacity
 xcompmgr &
+feh --no-fehbg --bg-fill ~/.local/share/wallpaper.png &
 
 # Exec time script to show time and battery in dwm title
 # dwmtime &
