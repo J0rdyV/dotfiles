@@ -18,4 +18,5 @@ c.statusbar.padding = {"bottom": 3, "left": 0, "right": 0, "top": 3}
 
 c.aliases['ytdl'] = """spawn -v -m zsh -c 'cd ~/ && yt {url}'"""
 
-config.source('gruvbox.py')
+# config.source('gruvbox.py')
+config.source('blackwhite.py')
