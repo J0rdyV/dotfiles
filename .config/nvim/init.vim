@@ -42,7 +42,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'jremmen/vim-ripgrep'
 	Plug 'tpope/vim-fugitive'
 	Plug 'ctrlpvim/ctrlp.vim'
-	Plug 'vim-airline/vim-airline'
+	" Plug 'vim-airline/vim-airline'
 	Plug 'vimwiki/vimwiki'
 	Plug 'mattn/calendar-vim'
 
