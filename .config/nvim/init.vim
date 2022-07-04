@@ -42,7 +42,6 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'jremmen/vim-ripgrep'
 	Plug 'tpope/vim-fugitive'
 	Plug 'ctrlpvim/ctrlp.vim'
-	" Plug 'vim-airline/vim-airline'
 	Plug 'vimwiki/vimwiki'
 	Plug 'mattn/calendar-vim'
 
@@ -52,12 +51,12 @@ call plug#begin('~/.config/nvim/plugged')
 
 	" Filetypes
 	Plug 'mechatroner/rainbow_csv'
-	Plug 'ap/vim-css-color'
 	Plug 'evidens/vim-twig'
 
 	" Snippets - https://medium.com/@jimeno0/snipets-in-vim-neovim-2ed9ab89befc
 	Plug 'SirVer/ultisnips'
-	Plug 'honza/vim-snippets'
+
+	Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -82,9 +81,6 @@ autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufReadPre <buffer> Mail()
 " Add <br>'s to line endings in mails
 autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufWritePre <buffer> %s/$/<br>/
 
-" Enable powerline fonts
-let g:airline_powerline_fonts = 1
-
 " Fix calendar view
 let g:calendar_mark = 'left-fit'
 let g:calendar_monday = 1
@@ -93,7 +89,7 @@ let g:calendar_monday = 1
 autocmd FileType c,cpp,css,java,html,php,vimwiki,vim,md autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " vimwiki - default markdown
-let g:vimwiki_list = [{'path': '~/.config/nvim/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
+let g:vimwiki_list = [{'path': $HOME.'/.config/nvim/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
 
 " Restore cursor position
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif

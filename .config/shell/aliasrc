@@ -58,3 +58,4 @@ alias \
 	rm='rm -i' \
 	sloc="find -name '*.php' | xargs wc -l" \
 	weather='curl wttr.in/\?0pQ' \
+	dc='docker-compose exec fpm vendor/bin/phpspec run -vv' \
