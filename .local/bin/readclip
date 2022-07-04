@@ -1,0 +1,1 @@
+st -i -g '100x3+500+500' -t "speedread" -e sh -c "xclip -o | speedread"
