@@ -4,8 +4,16 @@ precmd() { print "" }
 # Enable colors and change prompt:
 autoload -U colors && colors
 
-# setopt PROMPT_SUBST
-PS1="%B%{$fg[green]%}%~%{$reset_color%} "
+function git_branch_name()
+{
+	branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+	if [ -n "$branch" ]; then
+		echo " ($branch)"
+	fi
+}
+
+setopt PROMPT_SUBST
+PS1='%B%{$fg[green]%}%~%{$fg[yellow]%}$(git_branch_name)%{$reset_color%} '
 
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
