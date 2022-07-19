@@ -1,4 +1,4 @@
 /* xrandr --auto && xset r rate 200 60 && xrandr --output DP-1-2 --auto --output DP-1-1 --auto --left-of DP-1-2 --primary --auto --output eDP-1 --auto --left-of DP-1-1 && setxkbmap -layout dvorak */
 
-xrandr --auto && xset r rate 200 60 && xrandr --output HDMI-1 --auto --output eDP-1 --auto --below HDMI-1 && setxkbmap -layout dvorak
+xrandr --auto && xset r rate 200 60 && xrandr --output HDMI-1 --auto --output eDP-1 --auto --below HDMI-1 && setxkbmap -layout dvorak && feh --no-fehbg --bg-fill "$XDG_DATA_HOME"/wallpaper.png
 

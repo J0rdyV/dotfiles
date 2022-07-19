@@ -91,6 +91,15 @@ autocmd FileType c,cpp,css,java,html,php,vimwiki,vim,md autocmd BufWritePre <buf
 " vimwiki - default markdown
 let g:vimwiki_list = [{'path': $HOME.'/.config/nvim/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
 
+" copilot
+let g:copilot_filetypes = {
+	\ 'xml': v:false,
+	\ 'vimwiki': v:false,
+	\ 'vim': v:false,
+	\ 'md': v:false,
+	\ 'markdown': v:false,
+	\ }
+
 " Restore cursor position
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
