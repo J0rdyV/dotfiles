@@ -1,5 +1,7 @@
 #show-read-feeds no
-auto-reload yes
+#auto-reload yes
+refresh-on-startup no
+max-items 0
 
 external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 
@@ -32,6 +34,8 @@ color article white default bold
 browser "qutebrowser --target private-window"
 macro , open-in-browser-noninteractively
 macro y set browser "mpv" ; open-in-browser ; set browser linkhandler
+macro m set browser "mpv --no-video" ; open-in-browser ; set browser linkhandler
+macro d set browser "yt-dlp -S res,ext:mp4:m4a --recode mp4" ; open-in-browser ; set browser linkhandler
 macro b set browser "qutebrowser --target private-window" ; open-in-browser ; set browser linkhandler
 macro w set browser "lynx" ; open-in-browser ; set browser linkhandler
 

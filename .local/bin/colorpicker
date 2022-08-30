@@ -1,1 +1,1 @@
-grabc | xclip -selection c
+grabc | xclip -selection c -rmlastnl

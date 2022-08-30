@@ -21,7 +21,9 @@ alias \
 	yt="yt-dlp --embed-metadata -i" \
 	yta="yt -x -f bestaudio/best" \
 	ffmpeg="ffmpeg -hide_banner" \
-	l="ls -la"
+	l="ls -l" \
+	la="ls -la" \
+	ll="ls -la"
 
 # Colorize commands when possible.
 alias \
@@ -58,5 +60,11 @@ alias \
 	rm='rm -i' \
 	sloc="find -name '*.php' | xargs wc -l" \
 	weather='curl wttr.in/\?0pQ' \
-	dc='docker-compose exec fpm vendor/bin/phpspec run -vv' \
 	ts="ts '[%Y-%m-%d %H:%M:%S]'" \
+	webcamtest='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed'
+
+alias \
+	dc_start='docker-compose up -d' \
+	dc_stop='docker-compose stop' \
+	dc_remove='docker-compose down' \
+	dc_test='docker-compose exec fpm vendor/bin/phpspec run -vv' \

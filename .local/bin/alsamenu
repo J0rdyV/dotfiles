@@ -1,1 +1,1 @@
-st -t alsamixer -e alsamixer
+st -t alsamixer -c alsamixer -e alsamixer
