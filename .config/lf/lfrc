@@ -1,18 +1,30 @@
+# Basic vars
+set shellopts '-eu'
+set ifs "\n"
+set scrolloff 10
+set icons
+set period 1
+set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 
 # cmds/functions
 
+set ifs="\n"
 cmd open ${{
-    case $(file --mime-type "$(readlink -f $f)" -b) in
-	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
-	# image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-	text/*|application/json|inode/x-empty) $EDITOR $fx;;
-	image/*) feh $fx;;
-	audio/*) mpv --no-video $fx ;;
-	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
-	application/pgp-encrypted) $EDITOR $fx ;;
-        # *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
-    esac
+	#case $f in
+		#*.pdf) zathura $fx;;
+		#*.PDF) zathura $fx;;
+	#esac
+	case $(file --mime-type "$(readlink -f $f)" -b) in
+		#application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
+		image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+		text/*|application/json|inode/x-empty) $EDITOR $fx;;
+		image/*) feh $fx;;
+		audio/*) mpv --no-video $fx ;;
+		video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+		application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+		application/pgp-encrypted) $EDITOR $fx ;;
+		# *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+	esac
 }}
 
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"

@@ -50,18 +50,12 @@ alias \
 
 # Set personal aliases
 alias \
-	yt='(){yt-dlp --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3 -i $1}' \
 	rdp='(){ xfreerdp /w:1920 /h:1000 /v:$1 ;}' \
 	webc='(){ v4l2-ctl -d /dev/video0 -c exposure_absolute=$1; }' \
-	bl='(){ sudo echo $1 > /sys/class/backlight/amdgpu_bl0/brightness; }' \
-	t='task' \
-	i='timew' \
-	batt='cat /sys/class/power_supply/BAT0/capacity' \
 	rm='rm -i' \
 	sloc="find -name '*.php' | xargs wc -l" \
 	weather='curl wttr.in/\?0pQ' \
 	ts="ts '[%Y-%m-%d %H:%M:%S]'" \
-	webcamtest='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed'
 
 alias \
 	dc_start='docker-compose up -d' \

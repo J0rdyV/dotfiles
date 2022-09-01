@@ -1,0 +1,1 @@
+cat ~/.local/bin/quicknotes | dmenu >> ~/.local/bin/quicknotes
