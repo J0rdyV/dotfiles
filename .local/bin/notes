@@ -1,1 +1,13 @@
-cat ~/.local/bin/quicknotes | dmenu >> ~/.local/bin/quicknotes
+#!/bin/bash
+
+# cat ~/.local/share/notes | dmenu >> ~/.local/share/notes
+
+FILE=~/.local/share/notes
+STRING=$(cat ${FILE} | sort -r | dmenu -p Notes)
+
+if [[ ! -z $(grep -m 1 -x -F "$STRING" "$FILE") ]]; then 
+	sed -i "/$STRING/d" $FILE
+elif [ -n "$STRING" ]; then
+	echo $STRING | ts '%Y-%m-%d %H:%M:%S -' >> ${FILE}
+fi
+

@@ -60,5 +60,6 @@ alias \
 alias \
 	dc_start='docker-compose up -d' \
 	dc_stop='docker-compose stop' \
+	dc_stop_all='docker stop $(docker container ls -q)' \
 	dc_remove='docker-compose down' \
 	dc_test='docker-compose exec fpm vendor/bin/phpspec run -vv' \

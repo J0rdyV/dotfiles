@@ -79,7 +79,7 @@ autocmd VimEnter * hi Normal ctermbg=none
 " Enable mail writer for mutt
 autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufReadPre <buffer> Mail()
 " Add <br>'s to line endings in mails
-autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufWritePre <buffer> %s/$/<br>/
+" autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufWritePre <buffer> %s/$/<br>/
 
 " Fix calendar view
 let g:calendar_mark = 'left-fit'
