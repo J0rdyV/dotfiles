@@ -1,0 +1,1 @@
+pomodoro -s > /tmp/pomodoro$1

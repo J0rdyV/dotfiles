@@ -6,8 +6,8 @@ c.downloads.position = 'bottom'
 c.editor.command = ['st', '-e', 'nvim', '{}']
 c.tabs.mousewheel_switching = False
 
-c.fonts.default_family = 'Terminus'
-c.fonts.default_size = '14px'
+c.fonts.default_family = 'Cascadia Code'
+c.fonts.default_size = '18px'
 
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.policy.page = 'always'
@@ -20,4 +20,4 @@ c.statusbar.padding = {"bottom": 3, "left": 0, "right": 0, "top": 3}
 
 c.aliases['ytdl'] = """spawn -v -m zsh -c 'cd ~/ && yt {url}'"""
 
-config.source('blackwhite.py')
+config.source('gruvbox.py')

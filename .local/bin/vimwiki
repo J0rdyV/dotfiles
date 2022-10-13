@@ -1,0 +1,3 @@
+#! /bin/sh
+cd ${XDG_CONFIG_HOME}/nvim/vimwiki/
+${EDITOR} diary/$(date '+%Y-%m-%d').md

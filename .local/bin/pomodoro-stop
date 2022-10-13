@@ -1,0 +1,2 @@
+#!/bin/sh
+killall pomodoro && echo "" > /tmp/pomodoro

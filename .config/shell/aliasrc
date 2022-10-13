@@ -23,7 +23,8 @@ alias \
 	ffmpeg="ffmpeg -hide_banner" \
 	l="ls -l" \
 	la="ls -la" \
-	ll="ls -la"
+	ll="ls -la" \
+	cal="cal -m"
 
 # Colorize commands when possible.
 alias \
@@ -37,6 +38,7 @@ alias \
 alias \
 	ka="killall" \
 	g="git" \
+	gd="git diff HEAD" \
 	trem="transmission-remote" \
 	YT="youtube-viewer" \
 	sdn="shutdown -h now" \
@@ -56,6 +58,7 @@ alias \
 	sloc="find -name '*.php' | xargs wc -l" \
 	weather='curl wttr.in/\?0pQ' \
 	ts="ts '[%Y-%m-%d %H:%M:%S]'" \
+	vim_eisenhower="vim 4 -c 'split 2' -c 'vsplit 1' -c 'wincmd j' -c 'vsplit 3' -c 'wincmd k'" \
 
 alias \
 	dc_start='docker-compose up -d' \
