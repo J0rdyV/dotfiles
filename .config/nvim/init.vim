@@ -1,4 +1,4 @@
-set nocompatible
+<
 syntax enable
 filetype plugin indent on
 
@@ -13,7 +13,7 @@ set encoding=utf-8
 set clipboard=unnamedplus
 set smartindent
 set nu
-" set relativenumber
+set numberwidth=2
 set nowrap
 set ignorecase
 set noswapfile
@@ -29,76 +29,28 @@ set tabstop=4
 set shiftwidth=4
 
 " Autocomplete
-"set wildmode=longest,list,full
-
-" Plugins
-call plug#begin('~/.config/nvim/plugged')
-
-	" Colorscheme
-	Plug 'morhetz/gruvbox'
-
-	" Function
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'jremmen/vim-ripgrep'
-	Plug 'tpope/vim-fugitive'
-	Plug 'ctrlpvim/ctrlp.vim'
-	Plug 'vimwiki/vimwiki'
-	Plug 'mattn/calendar-vim'
-
-	" Extensibility
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-commentary'
-
-	" Filetypes
-	Plug 'mechatroner/rainbow_csv'
-	Plug 'evidens/vim-twig'
-
-	" Snippets - https://medium.com/@jimeno0/snipets-in-vim-neovim-2ed9ab89befc
-	Plug 'SirVer/ultisnips'
-
-	Plug 'github/copilot.vim'
-
-call plug#end()
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
+set wildmode=longest,list,full
 
 " Colors
-colorscheme gruvbox
 set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-set background=dark
-let g:gruvbox_contrast_dark = 'soft'
-
-" Enable transparenty
-let g:gruvbox_transparent_bg = 1
-autocmd VimEnter * hi Normal ctermbg=none
+highlight Normal ctermbg=none
+highlight ColorColumn ctermbg=235 ctermfg=none
+highlight StatusLine ctermbg=15 ctermfg=235
+highlight StatusLineNC ctermbg=7 ctermfg=0
+highlight LineNr ctermbg=0 ctermfg=7
+highlight CursorLine cterm=none
+highlight CursorLineNr cterm=none
+highlight NonText ctermfg=240
+set background=light
 
 " Enable mail writer for mutt
 autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufReadPre <buffer> Mail()
-" Add <br>'s to line endings in mails
-" autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufWritePre <buffer> %s/$/<br>/
 
-" Fix calendar view
-let g:calendar_mark = 'left-fit'
-let g:calendar_monday = 1
+" Enable html in twig
+autocmd BufRead,BufNewFile *.twig set syntax=html
 
 " Remove trailing
-autocmd FileType c,cpp,css,java,html,php,vimwiki,vim,md autocmd BufWritePre <buffer> %s/\s\+$//e
-
-" vimwiki - default markdown
-let g:vimwiki_list = [{'path': $HOME.'/.config/nvim/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
-
-" copilot
-let g:copilot_filetypes = {
-	\ 'xml': v:false,
-	\ 'vimwiki': v:false,
-	\ 'vim': v:false,
-	\ 'md': v:false,
-	\ 'markdown': v:false,
-	\ }
+autocmd FileType c,cpp,css,java,html,php,vimwiki,vim,md,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Restore cursor position
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -115,41 +67,27 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	" Map Ctrl-Backspace to delete the previous word in insert mode.
 	imap <C-H> <C-W>
 
+	" List folder content
+	nnoremap <Leader>p :e .<CR>
+
+	" Find in files
+	" :set splitbelow | new | set filetype=markdown | set buftype=nowrite | r!rg test
+
+	" Comment line
+	nnoremap <Leader>cc :normal I# <CR>
+	nnoremap <Leader>ch :CommentHTML<CR>
+
 	" Delete buffer
 	nnoremap <Leader>x :bd<CR>
 
 	" Next buffer
 	nnoremap <Leader>n :bn<CR>
 
-	" Open Git fugitive tab
-	nnoremap <Leader>g :G<CR>
-
-	" Git commit
-	nnoremap <Leader>gc :Git commit -S<CR>
-
-	" Git push
-	nnoremap <Leader>gp :Git push<CR>
-
-	" Ripgrep search
-	nnoremap <Leader>f :Rg<Space>
-
-	" Coc Search
-	nnoremap <Leader>F :CocSearch<Space>
-
-	" Open file
-	nnoremap <Leader>p :CtrlP<CR>
-
 	" Mail editor
 	nnoremap <leader>m :Mail<CR>
 
 	" Force Ctrl+C to ESC key
 	inoremap <C-c> <esc>
-
-	" GoTo code navigation
-	nmap <silent> gd <Plug>(coc-definition)
-	nmap <silent> gy <Plug>(coc-type-definition)
-	nmap <silent> gi <Plug>(coc-implementation)
-	nmap <silent> gr <Plug>(coc-references)
 
 	" allow the . to execute once for each line of a visual selection
 	vnoremap . :normal .<CR>
@@ -180,3 +118,24 @@ function! ReformatHTML()
 	echo 'formatted to multiple lines'
 endfunction
 com! ReformatHTML call ReformatHTML()
+
+function! CommentHTML()
+	:normal I<!--
+	:normal A-->
+endfunction
+com! CommentHTML call CommentHTML()
+
+function! GenerateFilesList()
+	:r!ls -la | awk '{print $9}' | grep '\....*'
+	:%s/^/- /g
+	:normal gg
+	:normal dd
+	:%norm! @t
+	:normal gg
+	:normal O# Generated Files
+endfunction
+com! GenerateFilesList call GenerateFilesList()
+
+
+
+
