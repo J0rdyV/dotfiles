@@ -1,0 +1,20 @@
+#!/bin/sh
+clear
+# echo $0 $1 $2 $3 $4 $5 $6 $7
+
+output=$(dc -e "10 k $1 $2 $3 $4 $5 $6 f")
+
+a=$(echo $output | awk '{print $4}')
+b=$(echo $output | awk '{print $3}')
+c=$(echo $output | awk '{print $2}')
+d=$(echo $output | awk '{print $1}')
+
+echo "4: $a"
+echo "3: $b"
+echo "2: $c"
+echo "1: $d"
+
+read -p "> " my_var
+
+dca 10 k $a $b $c $d "${my_var}"
+

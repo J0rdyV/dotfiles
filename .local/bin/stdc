@@ -1,0 +1,1 @@
+st -i -g 34x20+800+300 -t "stdc" -c "stdc" -e sh -c "dca"

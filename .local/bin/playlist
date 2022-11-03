@@ -1,0 +1,2 @@
+#!/bin/sh
+mpv --no-video $(cat .local/share/playlists | dmenu | awk '{ print $3 }')
