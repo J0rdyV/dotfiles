@@ -7,7 +7,7 @@ FILE=~/.local/share/notes
 if [[ -n $1 ]]; then
 	STRING=$1
 else
-	STRING=$(cat ${FILE} | sort -r | dmenu -p Notes)
+	STRING=$(cat ${FILE} | sort -r | dmenu -l 40 -p Notes)
 fi
 
 if [[ ! -z $(grep -m 1 -x -F "$STRING" "$FILE") ]]; then 
