@@ -1,4 +1,3 @@
-<
 syntax enable
 filetype plugin indent on
 
@@ -21,7 +20,6 @@ set nobackup
 set undofile
 set incsearch
 set nohlsearch
-set t_ut=""
 set cursorline
 set scrolloff=5
 set softtabstop=4
@@ -48,6 +46,9 @@ autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufReadPre <buffer> Mail()
 
 " Enable html in twig
 autocmd BufRead,BufNewFile *.twig set syntax=html
+
+" Enable wrap in md
+autocmd BufRead,BufNewFile *.md set wrap linebreak
 
 " Remove trailing
 autocmd FileType c,cpp,css,java,html,php,vimwiki,vim,md,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
@@ -135,7 +136,4 @@ function! GenerateFilesList()
 	:normal O# Generated Files
 endfunction
 com! GenerateFilesList call GenerateFilesList()
-
-
-
 

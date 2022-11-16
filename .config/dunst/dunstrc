@@ -14,17 +14,17 @@
     line_height = 0
     min_icon_size = 0
     max_icon_size = 16
-    background = "#000000"
-    foreground = "#d7d7d7"
+    background = "#32302f"
+    foreground = "#ebdbb2"
     timeout = 10
 
 [urgency_low]
     frame_color = "#98971a"
 
 [urgency_normal]
-    frame_color = "#d7d7d7"
+    frame_color = "#ebdbb2"
 
 [urgency_critical]
-    frame_color = "#cc241d"
+    frame_color = "#fabd2f"
     timeout = 0
 

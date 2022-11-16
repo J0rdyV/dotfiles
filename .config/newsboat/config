@@ -24,7 +24,7 @@ bind-key N prev-unread
 bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
-bind-key v toggle-show-read-feeds
+bind-key . toggle-show-read-feeds
 
 color listnormal cyan default
 color listfocus black yellow standout bold
@@ -36,11 +36,11 @@ color article white default bold
 # browser "qutebrowser --target private-window"
 browser "lynx"
 macro , open-in-browser-noninteractively
-macro y set browser "mpv" ; open-in-browser ; set browser linkhandler
-macro m set browser "mpv --no-video" ; open-in-browser ; set browser linkhandler
-macro d set browser "yt-dlp -S res,ext:mp4:m4a --recode mp4" ; open-in-browser ; set browser linkhandler
-macro b set browser "qutebrowser --target private-window" ; open-in-browser ; set browser linkhandler
-macro w set browser "lynx" ; open-in-browser ; set browser linkhandler
+macro y set browser "mpv" ; open-in-browser ; set browser "lynx"
+macro m set browser "mpv --no-video" ; open-in-browser ; set browser "lynx"
+macro d set browser "yt-dlp -S res,ext:mp4:m4a --recode mp4" ; open-in-browser ; set browser "lynx"
+macro b set browser "qutebrowser --target private-window" ; open-in-browser ; set browser "lynx"
+macro w set browser "lynx" ; open-in-browser ; set browser "lynx"
 
 highlight all "---.*---" yellow
 highlight all "===.*===" yellow
