@@ -11,7 +11,7 @@ set list listchars=nbsp:¬,tab:>_,space:·,trail:·,extends:>
 set encoding=utf-8
 set clipboard=unnamedplus
 set smartindent
-set nu
+set number
 set numberwidth=2
 set nowrap
 set ignorecase
@@ -25,33 +25,26 @@ set scrolloff=5
 set softtabstop=4
 set tabstop=4
 set shiftwidth=4
+set colorcolumn=80
+set splitbelow
 
 " Autocomplete
 set wildmode=longest,list,full
 
-" Colors
-set colorcolumn=80
-highlight Normal ctermbg=none
-highlight ColorColumn ctermbg=235 ctermfg=none
-highlight StatusLine ctermbg=15 ctermfg=235
-highlight StatusLineNC ctermbg=7 ctermfg=0
-highlight LineNr ctermbg=0 ctermfg=7
-highlight CursorLine cterm=none
-highlight CursorLineNr cterm=none
-highlight NonText ctermfg=240
-set background=light
+" Include plugins
+source $XDG_CONFIG_HOME/nvim/plugins/*
 
-" Enable mail writer for mutt
-autocmd BufRead,BufNewFile /tmp/neomutt* autocmd BufReadPre <buffer> Mail()
+" Transparent background
+"highlight Normal ctermbg=none
 
 " Enable html in twig
 autocmd BufRead,BufNewFile *.twig set syntax=html
 
 " Enable wrap in md
-autocmd BufRead,BufNewFile *.md set wrap linebreak
+autocmd BufRead,BufNewFile *.md set wrap linebreak nonumber columns=80
 
 " Remove trailing
-autocmd FileType c,cpp,css,java,html,php,vimwiki,vim,md,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,css,java,html,php,vimwiki,md,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Restore cursor position
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -72,20 +65,21 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	nnoremap <Leader>p :e .<CR>
 
 	" Find in files
-	" :set splitbelow | new | set filetype=markdown | set buftype=nowrite | r!rg test
+	nnoremap <Leader>f :new \| terminal!rg -i 
 
 	" Comment line
-	nnoremap <Leader>cc :normal I# <CR>
-	nnoremap <Leader>ch :CommentHTML<CR>
+	nnoremap gcc :normal I# <CR>
+	nnoremap gch :normal I<!--<CR><ESC>:normal A--><CR>
 
-	" Delete buffer
+	" Complete to-do in markdown
+	nnoremap gp :s/\[ \]/[v]/g<CR>
+
+	" Buffer navigation
 	nnoremap <Leader>x :bd<CR>
-
-	" Next buffer
 	nnoremap <Leader>n :bn<CR>
-
-	" Mail editor
-	nnoremap <leader>m :Mail<CR>
+	nnoremap Bd :bd<CR>
+	nnoremap Bn :bn<CR>
+	nnoremap Bp :bp<CR>
 
 	" Force Ctrl+C to ESC key
 	inoremap <C-c> <esc>
@@ -99,19 +93,6 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
 
-" Writing
-function! Mail()
-	set spell spelllang=nl
-	set formatoptions=t1
-	set textwidth=80
-	set noautoindent
-	set tabstop=5
-	set expandtab
-	set wrap
-	echo 'Enabled email writing mode'
-endfunction
-com! Mail call Mail()
-
 function! ReformatHTML()
 	:s/<[^>]*>/\r&\r/g
 	:g/^$/d
@@ -119,21 +100,4 @@ function! ReformatHTML()
 	echo 'formatted to multiple lines'
 endfunction
 com! ReformatHTML call ReformatHTML()
-
-function! CommentHTML()
-	:normal I<!--
-	:normal A-->
-endfunction
-com! CommentHTML call CommentHTML()
-
-function! GenerateFilesList()
-	:r!ls -la | awk '{print $9}' | grep '\....*'
-	:%s/^/- /g
-	:normal gg
-	:normal dd
-	:%norm! @t
-	:normal gg
-	:normal O# Generated Files
-endfunction
-com! GenerateFilesList call GenerateFilesList()
 

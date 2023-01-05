@@ -9,10 +9,10 @@ b=$(echo $output | awk '{print $3}')
 c=$(echo $output | awk '{print $2}')
 d=$(echo $output | awk '{print $1}')
 
-echo "4: $a"
-echo "3: $b"
-echo "2: $c"
-echo "1: $d"
+echo "T: $a"
+echo "Z: $b"
+echo "Y: $c"
+echo "X: $d"
 
 read -p "> " my_var
 

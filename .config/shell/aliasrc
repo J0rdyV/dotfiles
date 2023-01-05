@@ -66,3 +66,5 @@ alias \
 	dc_stop_all='docker stop $(docker container ls -q)' \
 	dc_remove='docker-compose down' \
 	dc_test='docker-compose exec fpm vendor/bin/phpspec run -vv' \
+	yarn_watch='docker-compose run -u node --rm -e YARN_REGISTRY -e PUPPETEER_SKIP_CHROMIUM_DOWNLOAD node yarn run webpack-dev --watch' \
+
