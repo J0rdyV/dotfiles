@@ -1,0 +1,22 @@
+#!/bin/sh
+
+quefile="${XDG_DATA_HOME:-$HOME/.local/share}/share/queue"
+
+# Check if an argument was given
+if [ $# -eq 0 ]
+then
+    # Loop over the file with links
+    while read line
+    do
+        id=${line#*=}
+        notify-send --urgency=low "🌳 starting queue..."
+        cd '/home/jordy/Downloads'
+        # Send a curl request to the link
+        ytmp3 $line
+        # Remove the link from the file
+        sed -i "/$id/d" $quefile
+    done < $quefile
+else
+    # Add a link to a file
+    echo $1 >> $quefile
+fi

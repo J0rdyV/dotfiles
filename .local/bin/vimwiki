@@ -1,3 +1,13 @@
 #! /bin/sh
 cd ${XDG_CONFIG_HOME}/nvim/vimwiki/
+FILE=diary/$(date '+%Y-%m-%d').md
+
+if [ ! -f $FILE ]; then
+	echo '' > $FILE
+	echo '# Done Today:' >> $FILE
+	echo '- ' >> $FILE
+	echo '' >> $FILE
+	cat diary/$(ls -l diary | awk '{print $9}' | tail -n 1) | grep '*' >> $FILE
+fi
 ${EDITOR} diary/$(date '+%Y-%m-%d').md
+

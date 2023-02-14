@@ -1,0 +1,6 @@
+#!/bin/sh
+projectDir="$HOME/induxx/projects/"
+project=$(ls -l $projectDir | awk '{print $9}' | dmenu)
+if [[ -n $project ]]; then
+	phpstorm "$projectDir$project"
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+APIKEY=$(cat ~/.local/share/askgptkey)
+curl https://api.openai.com/v1/completions \
+  -s \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $APIKEY" \
+  -d '{
+  "model": "text-davinci-003",
+  "prompt": "'"$*"'",
+  "max_tokens": 4000,
+  "temperature": 0
+}' | jq -r '.choices[0].text' | sed 's/\\n/\n/g' | sed '1{/^$/d;}' | sed -e 's/^/\x1b[35m/' -e 's/$/\x1b[0m/'

@@ -59,6 +59,7 @@ alias \
 	weather='curl wttr.in/\?0pQ' \
 	ts="ts '[%Y-%m-%d %H:%M:%S]'" \
 	vim_eisenhower="vim 4 -c 'split 2' -c 'vsplit 1' -c 'wincmd j' -c 'vsplit 3' -c 'wincmd k'" \
+	figlet="figlet -f slant" \
 
 alias \
 	dc_start='docker-compose up -d' \
@@ -66,5 +67,7 @@ alias \
 	dc_stop_all='docker stop $(docker container ls -q)' \
 	dc_remove='docker-compose down' \
 	dc_test='docker-compose exec fpm vendor/bin/phpspec run -vv' \
+	dc_update='docker-compose pull && docker-compose up -d --remove-orphans' \
 	yarn_watch='docker-compose run -u node --rm -e YARN_REGISTRY -e PUPPETEER_SKIP_CHROMIUM_DOWNLOAD node yarn run webpack-dev --watch' \
+	akeneo_queue='bin/docker/console messenger:consume ui_job import_export_job data_maintenance_job --env=prod' \
 

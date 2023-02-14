@@ -35,7 +35,7 @@ set wildmode=longest,list,full
 source $XDG_CONFIG_HOME/nvim/plugins/*
 
 " Transparent background
-"highlight Normal ctermbg=none
+highlight Normal ctermbg=none
 
 " Enable html in twig
 autocmd BufRead,BufNewFile *.twig set syntax=html
@@ -68,11 +68,13 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	nnoremap <Leader>f :new \| terminal!rg -i 
 
 	" Comment line
-	nnoremap gcc :normal I# <CR>
-	nnoremap gch :normal I<!--<CR><ESC>:normal A--><CR>
+	nnoremap gc :normal I# <CR>
+	nnoremap gh :normal I<!--<CR><ESC>:normal A--><CR>
 
-	" Complete to-do in markdown
-	nnoremap gp :s/\[ \]/[v]/g<CR>
+	" ToDo items in markdown
+	nnoremap tc :normal o- [ ] 
+	nnoremap Tc :normal O- [ ] 
+	nnoremap td :s/\[ \]/[v]/g<CR>
 
 	" Buffer navigation
 	nnoremap <Leader>x :bd<CR>

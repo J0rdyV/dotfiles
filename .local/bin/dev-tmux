@@ -1,0 +1,8 @@
+#!/bin/sh
+tmux new-session -d -n main
+tmux split-window -h 'vimwiki' 
+tmux split-window -v 'dca'
+tmux new-window -d 'ncmpcpp'
+tmux new-window -d -n gpt
+tmux send-keys -t gpt "ask-gpt 'hello'" Enter
+tmux -2 attach-session -d

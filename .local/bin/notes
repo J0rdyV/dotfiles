@@ -1,13 +1,14 @@
-#!/bin/bash
+#!/bin/sh
 
 # cat ~/.local/share/notes | dmenu >> ~/.local/share/notes
 
-FILE=~/.local/share/notes
+FILE="${XDG_DATA_HOME:-$HOME/.local/share}/notes"
+LOGFILE="${XDG_DATA_HOME:-$HOME/.local/share}/notes_log"
 
 if [[ -n $1 ]]; then
 	STRING=$1
 else
-	STRING=$(cat ${FILE} | sort -r | dmenu -l 40 -p Notes)
+	STRING=$(cat ${FILE} | sort -r | dmenu -l 5 -p Notes)
 fi
 
 if [[ ! -z $(grep -m 1 -x -F "$STRING" "$FILE") ]]; then 
@@ -15,5 +16,6 @@ if [[ ! -z $(grep -m 1 -x -F "$STRING" "$FILE") ]]; then
 	echo -n $STRING | sed "s/^.*- //" | xclip
 elif [ -n "$STRING" ]; then
 	echo $STRING | ts '%Y-%m-%d %H:%M:%S -' >> ${FILE}
+	echo $STRING | ts '%Y-%m-%d %H:%M:%S -' >> ${LOGFILE}
 fi
 
