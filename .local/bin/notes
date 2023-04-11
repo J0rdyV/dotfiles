@@ -8,7 +8,7 @@ LOGFILE="${XDG_DATA_HOME:-$HOME/.local/share}/notes_log"
 if [[ -n $1 ]]; then
 	STRING=$1
 else
-	STRING=$(cat ${FILE} | sort -r | dmenu -l 5 -p Notes)
+	STRING=$(cat ${FILE} | sort -r | dmenu -l 20 -p Notes)
 fi
 
 if [[ ! -z $(grep -m 1 -x -F "$STRING" "$FILE") ]]; then 

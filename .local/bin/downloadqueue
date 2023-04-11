@@ -1,6 +1,6 @@
 #!/bin/sh
 
-quefile="${XDG_DATA_HOME:-$HOME/.local/share}/share/queue"
+quefile="${XDG_DATA_HOME:-$HOME/.local/share}/queue"
 
 # Check if an argument was given
 if [ $# -eq 0 ]
@@ -10,13 +10,28 @@ then
     do
         id=${line#*=}
         notify-send --urgency=low "🌳 starting queue..."
-        cd '/home/jordy/Downloads'
+        cd "$HOME/personal"
+        mkdir queue
+        cd queue
+        urltype=$(echo $line | awk '{print $1}')
+        url=$(echo $line | awk '{print $3}')
         # Send a curl request to the link
-        ytmp3 $line
+        if [ $urltype = "music" ]
+        then
+            $HOME/.local/bin/ytmp3 $url
+        elif [ $urltype = "playl" ]
+        then
+            $HOME/.local/bin/ytmp3split $url
+        elif [ $urltype = "video" ]
+        then
+            yt-dlp $url
+        fi
         # Remove the link from the file
-        sed -i "/$id/d" $quefile
+        #sed -i "/$id/d" $quefile
     done < $quefile
 else
     # Add a link to a file
-    echo $1 >> $quefile
+    read -p 'url: ' newurl
+    read -p 'type (music|playl|video): ' newtype
+    echo "$newtype | $newurl" >> $quefile
 fi

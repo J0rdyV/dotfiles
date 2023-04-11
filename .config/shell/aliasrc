@@ -70,4 +70,5 @@ alias \
 	dc_update='docker-compose pull && docker-compose up -d --remove-orphans' \
 	yarn_watch='docker-compose run -u node --rm -e YARN_REGISTRY -e PUPPETEER_SKIP_CHROMIUM_DOWNLOAD node yarn run webpack-dev --watch' \
 	akeneo_queue='bin/docker/console messenger:consume ui_job import_export_job data_maintenance_job --env=prod' \
+	akeneo_reset_indexes='bin/docker/console akeneo:elasticsearch:reset-indexes && bin/docker/console pim:product:index --all && bin/docker/console pim:product-model:index --all'
 

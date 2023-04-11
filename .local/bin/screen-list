@@ -1,1 +1,2 @@
-ls -l ~/.local/share/screenshot/screenshot$(date '+%Y-%m-%d')* | awk '{ print $9 }' | dmenu | xargs -I % sh -c 'feh "%"'
+#!/bin/sh
+ls -l ~/.local/share/screenshot/screenshot$(date '+%Y-%m-%d')* | awk '{ print $9 }' | sort -r | dmenu | xargs -I % sh -c 'feh "%"'

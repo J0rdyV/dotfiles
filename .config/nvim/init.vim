@@ -32,7 +32,9 @@ set splitbelow
 set wildmode=longest,list,full
 
 " Include plugins
-source $XDG_CONFIG_HOME/nvim/plugins/*
+for f in split(glob('$XDG_CONFIG_HOME/nvim/plugins/*.vim'), '\n')
+    exe 'source' f
+endfor
 
 " Transparent background
 highlight Normal ctermbg=none
@@ -40,8 +42,8 @@ highlight Normal ctermbg=none
 " Enable html in twig
 autocmd BufRead,BufNewFile *.twig set syntax=html
 
-" Enable wrap in md
-autocmd BufRead,BufNewFile *.md set wrap linebreak nonumber columns=80
+" Enable wrap in md/txt
+autocmd BufRead,BufNewFile *.md,*.txt set wrap linebreak nonumber columns=80 filetype=markdown
 
 " Remove trailing
 autocmd FileType c,cpp,css,java,html,php,vimwiki,md,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
@@ -74,7 +76,8 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	" ToDo items in markdown
 	nnoremap tc :normal o- [ ] 
 	nnoremap Tc :normal O- [ ] 
-	nnoremap td :s/\[ \]/[v]/g<CR>
+	nnoremap t. :s/\[.\]/[.]/g<CR>
+	nnoremap td :s/\[.\]/[v]/g<CR>
 
 	" Buffer navigation
 	nnoremap <Leader>x :bd<CR>

@@ -1,3 +1,4 @@
+#!/bin/sh
 while true; do
 
 	charge=$(cat /sys/class/power_supply/BAT0/status)
@@ -21,6 +22,6 @@ while true; do
 	fi
 
 #	xsetroot -name " $timew ($timewhours$hour$timewminutes$min)$icon $(cat /sys/class/power_supply/BAT0/capacity)% $(date '+%d/%m %H:%M') "
-	xsetroot -name "$icon $(cat /sys/class/power_supply/BAT0/capacity)% $(date '+%d/%m %H:%M') "
+	xsetroot -name "$weather $icon $(cat /sys/class/power_supply/BAT0/capacity)% $(date '+%d/%m %H:%M') "
 	sleep 30
 done

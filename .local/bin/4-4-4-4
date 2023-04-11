@@ -1,0 +1,11 @@
+#!/bin/sh
+while true; do
+	echo 'breath in'
+	sleep 4
+	echo -e '\033[0;31mHOLD\033[0m'
+	sleep 4
+	echo 'breath out'
+	sleep 4
+	echo -e '\033[0;31mHOLD\033[0m'
+	sleep 4
+done

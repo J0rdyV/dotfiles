@@ -1,0 +1,2 @@
+#!/bin/sh
+st -t stforth -c stforth -e gforth "${XDG_CONFIG_HOME:-$HOME/.config}/gforth/forth.fs" -e
