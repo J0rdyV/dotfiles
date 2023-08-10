@@ -1,21 +1,46 @@
 #!/bin/sh
 
-# cat ~/.local/share/notes | dmenu >> ~/.local/share/notes
-
 FILE="${XDG_DATA_HOME:-$HOME/.local/share}/notes"
 LOGFILE="${XDG_DATA_HOME:-$HOME/.local/share}/notes_log"
 
-if [[ -n $1 ]]; then
-	STRING=$1
+# if second argument is a '-' it means that both category and input are given
+if [[ $# -eq 3 ]]; then
+
+	# if string is in file then remove, else append
+	if [[ ! -z $(grep -m 1 -x -F "$3" "$FILE") ]]; then 
+		sed -i "/$3/d" $FILE
+		echo -n $3 | sed "s/^.*- //" | xclip
+	elif [ -n "$3" ]; then
+		CAT="$(printf '%-10s' "$1")"
+		echo "$CAT- $3" | ts '%Y-%m-%d %H:%M:%S -' >> ${FILE}
+		echo "$CAT- $3" | ts '%Y-%m-%d %H:%M:%S -' >> ${LOGFILE}
+	fi
+
+# else if "search" is given, show all notes
+elif [[ $1 = "search" ]]; then
+
+	cat .local/share/notes | sort -r | dmenu -l 20 -p search
+
+# else only category is given, show notes
+elif [[ -n $1 ]]; then
+
+	STRING=$(cat .local/share/notes | grep -i "^.*- $1.*-" | sort -r | dmenu -l 20 -p Notes)
+	# if not empty go to parsing notes, else go back to category select
+	if [[ -n $STRING ]]; then
+		notes "$1" "-" "$STRING"
+	else
+		notes
+	fi
+
+# else nothing is given, select category
 else
-	STRING=$(cat ${FILE} | sort -r | dmenu -l 20 -p Notes)
+
+	STRING=$(cat .local/share/notes | awk '{ print $4 }' | sort -u -r | dmenu -l 20 -p Category)
+	if [[ -n $STRING ]]; then
+		notes "$STRING"
+	fi
+
 fi
 
-if [[ ! -z $(grep -m 1 -x -F "$STRING" "$FILE") ]]; then 
-	sed -i "/$STRING/d" $FILE
-	echo -n $STRING | sed "s/^.*- //" | xclip
-elif [ -n "$STRING" ]; then
-	echo $STRING | ts '%Y-%m-%d %H:%M:%S -' >> ${FILE}
-	echo $STRING | ts '%Y-%m-%d %H:%M:%S -' >> ${LOGFILE}
-fi
+
 

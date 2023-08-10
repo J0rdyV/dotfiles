@@ -1,0 +1,9 @@
+#!/bin/sh
+clear
+task $*
+if [ "$1" != "" ]; then
+	task
+fi
+read -e -p "> " my_var
+# -i "task "
+taskwarrior ${my_var}

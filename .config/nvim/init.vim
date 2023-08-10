@@ -5,7 +5,8 @@ filetype plugin indent on
 set backupcopy=yes
 
 " Show tabs
-set list listchars=nbsp:¬,tab:>_,space:·,trail:·,extends:>
+" set list listchars=nbsp:¬,tab:>_,space:·,trail:·,extends:>
+set list listchars=nbsp:¬,tab:>_,trail:·,extends:>
 
 " SETtings
 set encoding=utf-8
@@ -13,7 +14,7 @@ set clipboard=unnamedplus
 set smartindent
 set number
 set numberwidth=2
-set nowrap
+set wrap
 set ignorecase
 set noswapfile
 set nobackup
@@ -56,6 +57,10 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	" Map leader key
 	let mapleader = " "
 
+	" Moving over wrapped lines
+	map j gj
+	map k gk
+
 	" Spell checker
 	map <F7> :setlocal spell! spelllang=nl<CR>
 	map <F8> :setlocal spell! spelllang=en_gb<CR>
@@ -78,6 +83,16 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	nnoremap Tc :normal O- [ ] 
 	nnoremap t. :s/\[.\]/[.]/g<CR>
 	nnoremap td :s/\[.\]/[v]/g<CR>
+	nnoremap tx :s/\[.\]/[x]/g<CR>
+	nnoremap t<Space> :s/\[.\]/[ ]/g<CR>
+	nnoremap cs` :normal bi`<ESC>ea`<ESC>
+	" remove duplicates
+	" :'<,'>!awk '\!seen[$0]++'
+
+	" Run visual selection as shell command
+	vnoremap R :w !zsh<cr>
+	" Open visual selection in brave
+	vnoremap O :w !brave<cr>
 
 	" Buffer navigation
 	nnoremap <Leader>x :bd<CR>
@@ -87,7 +102,11 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	nnoremap Bp :bp<CR>
 
 	" Force Ctrl+C to ESC key
-	inoremap <C-c> <esc>
+	nnoremap <C-c> <esc>
+	" Fix for Ctrl+C delay https://linuxsheet.com/answers/150093/
+	let g:ftplugin_sql_omni_key = '<C-j>'
+	" If this does not work, see mappings with :verbose imap <buffer> <C-c>
+	" And edit manually in files
 
 	" allow the . to execute once for each line of a visual selection
 	vnoremap . :normal .<CR>

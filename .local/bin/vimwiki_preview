@@ -1,0 +1,3 @@
+#!/bin/sh
+cd .config/nvim/vimwiki
+litemdview -s ~/.local/share/vimwiki.css .

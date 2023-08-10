@@ -27,7 +27,7 @@ then
             yt-dlp $url
         fi
         # Remove the link from the file
-        #sed -i "/$id/d" $quefile
+        sed -i "/$id/d" $quefile
     done < $quefile
 else
     # Add a link to a file

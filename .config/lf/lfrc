@@ -34,6 +34,7 @@ map D delete
 map E extract
 map C copyto
 map M moveto
+map . set hidden!
 
 map <c-n> push :mkdir<space>
 map <c-r> reload

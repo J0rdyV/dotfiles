@@ -4,10 +4,13 @@ FILE=diary/$(date '+%Y-%m-%d').md
 
 if [ ! -f $FILE ]; then
 	echo '' > $FILE
-	echo '# Done Today:' >> $FILE
-	echo '- ' >> $FILE
+	echo $(date '+%d.%m.' | sed 's/\.0/\./' | sed 's/^0//')$(date '+%a' | cut -c1) >> $FILE
 	echo '' >> $FILE
-	cat diary/$(ls -l diary | awk '{print $9}' | tail -n 1) | grep '*' >> $FILE
+	#cat diary/$(ls -l diary | awk '{print $9}' | tail -n 1) | grep '*' >> $FILE
+	sed -i 's/^\./>/g' diary/$(ls diary | tail -n 2 | head -n 1)
+	sed -i 's/^  \./  >/g' diary/$(ls diary | tail -n 2 | head -n 1)
+	sed -i 's/^    \./   >/g' diary/$(ls diary | tail -n 2 | head -n 1)
+	grep '^ *>' diary/$(ls diary | tail -n 2 | head -n 1) >> $FILE
 fi
 ${EDITOR} diary/$(date '+%Y-%m-%d').md
 

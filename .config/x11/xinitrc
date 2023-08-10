@@ -9,18 +9,13 @@ dwmblocks &					# Dwm title bar
 dunst &						# Notifications
 xset r rate 200 60 &		# Speed up xrate
 unclutter &					# Hide cursor when not in use
+tester &
 
-feh --no-fehbg --bg-fill \
-	"$XDG_DATA_HOME"/wallpaper.png &		# Set wallpaper
+feh --no-fehbg --bg-max --image-bg "#282828" \
+	"$XDG_DATA_HOME"/wallpaper &                # Set wallpaper
 
-# setsid mousetweaks --dwell --dwell-time=1.2 \
-# 	--threshold=10 -t 15 &					# mouse tweaks
-
-v4l2-ctl -d /dev/video0 -c saturation=75 &	# fix webcam
-
-mpv --no-audio-display --volume=50 \
-	"$XDG_DATA_HOME"/win_XP_Startup.mp3 &	# start-up sound
-
-transmission-qt &
+v4l2-ctl -d /dev/video0 -c saturation=85 &	# fix webcam
+v4l2-ctl -d /dev/video0 -c brightness=170 &
+v4l2-ctl -d /dev/video0 -c contrast=85 &
 
 ssh-agent dwm				# Start WM

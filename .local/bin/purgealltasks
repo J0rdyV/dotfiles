@@ -1,0 +1,2 @@
+#!/bin/sh
+task $(task status:deleted uuids) purge

@@ -1,17 +1,10 @@
 #!/bin/bash
-#
-# a simple dmenu session script 
-#
-###
-
-choice=$(echo -e "Meetings\nTimetracking\nLearning\nMails\nEten\nCodeReview\nBugfixes" | dmenu -p 'TimeW: ')
-
-case "$choice" in
-  Meetings) timew start Meetings & ;;
-  Learning) timew start Learning & ;;
-  Timetracking) timew start Timetracking & ;;
-  Mails) timew start Mails & ;;
-  Eten) timew start Eten & ;;
-  CodeReview) timew start CodeReview & ;;
-  Meetings) timew start Meetings & ;;
-esac
+menu=$(echo -n "$(timew | tail -n 1 | awk '{ print $2 }') - $(timew | head -n 1 | awk '{ print $2 }' | sed 's/"//g' )")
+choice=$( timew tags | awk 'NR > 3 { print $1 }' | dmenu -p "$menu" )
+if [ "$choice" = "stop" ]; then
+	timew stop
+elif [ "$choice" = "continue" ]; then
+	timew continue
+elif [ -n "$choice" ]; then
+	timew start $choice
+fi

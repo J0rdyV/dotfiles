@@ -1,5 +1,7 @@
 ( Default programs )
 : stack .s ;
+: show dup . ;
+: help words ;
 
 ( Define Stars )
 : star			42 emit ;
