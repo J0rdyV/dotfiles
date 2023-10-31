@@ -63,6 +63,7 @@ alias \
 	ts="ts '[%Y-%m-%d %H:%M:%S]'" \
 	vim_eisenhower="vim 4 -c 'split 2' -c 'vsplit 1' -c 'wincmd j' -c 'vsplit 3' -c 'wincmd k'" \
 	figlet="figlet -f slant" \
+	fortune="fortune oblique-strategies" \
 
 alias \
 	dc_start='docker-compose up -d' \

@@ -6,11 +6,9 @@ if [ ! -f $FILE ]; then
 	echo '' > $FILE
 	echo $(date '+%d.%m.' | sed 's/\.0/\./' | sed 's/^0//')$(date '+%a' | cut -c1) >> $FILE
 	echo '' >> $FILE
-	#cat diary/$(ls -l diary | awk '{print $9}' | tail -n 1) | grep '*' >> $FILE
-	sed -i 's/^\./>/g' diary/$(ls diary | tail -n 2 | head -n 1)
-	sed -i 's/^  \./  >/g' diary/$(ls diary | tail -n 2 | head -n 1)
-	sed -i 's/^    \./   >/g' diary/$(ls diary | tail -n 2 | head -n 1)
-	grep '^ *>' diary/$(ls diary | tail -n 2 | head -n 1) >> $FILE
+	sed -i -E 's/^( *)\. /\1> /g' diary/$(ls diary | tail -n 2 | head -n 1)
+	cat diary/$(ls diary | tail -n 2 | head -n 1) | grep -e '^ *>' >> $FILE
 fi
+
 ${EDITOR} diary/$(date '+%Y-%m-%d').md
 

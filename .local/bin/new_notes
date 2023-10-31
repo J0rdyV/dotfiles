@@ -1,0 +1,10 @@
+#!/bin/sh
+NOTES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/notes_dir"
+NOTE=$(ls -t $NOTES_DIR | dmenu)
+if [ -n "$NOTE" ]; then
+	st -t notes -c notes -e sh -c "$EDITOR $NOTES_DIR/$NOTE"
+	if [ "$(cat $NOTES_DIR/$NOTE)" == "" ]; then
+		echo 'Deleting empty file'
+		rm "$NOTES_DIR/$NOTE"
+	fi
+fi

@@ -3,15 +3,18 @@
 # check if arguments are given
 # left-of, right-of, above, below can be given
 
-xrandr --auto
-xset r rate 200 60
-setxkbmap -layout dvorak
+xrandr --auto				# Reset layout
 
-if [ $# -eq 0 ]; then
+xset r rate 200 60 &		# Speed up xrate
+setxkbmap -layout dvorak	# Enable keyboard layout
+
+if [ $# -eq 0 ]; then		# Fix layout
 	xrandr --output HDMI-1 --auto --output eDP-1 --auto --left-of HDMI-1
 else
 	xrandr --output HDMI-1 --auto --output eDP-1 --auto --$1 HDMI-1
 fi
 
-feh --no-fehbg --bg-max "$XDG_DATA_HOME"/wallpaper
+# Set wallpaper
+feh --no-fehbg --bg-fill --image-bg "#282828" \
+	"$XDG_DATA_HOME"/wallpaper &
 

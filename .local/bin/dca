@@ -1,20 +1,33 @@
 #!/bin/sh
 clear
-# echo $0 $1 $2 $3 $4 $5 $6 $7
 
-output=$(dc -e "10 k $1 $2 $3 $4 $5 $6 $7 f")
+if [ "${@: -1}" = "?" ]; then
 
-a=$(echo $output | awk '{print $4}')
-b=$(echo $output | awk '{print $3}')
-c=$(echo $output | awk '{print $2}')
-d=$(echo $output | awk '{print $1}')
+	echo "Quick Help"
+	echo "c: clear   s: drop    r: reverse"
+	echo "v: sqrt    d: dupl    "
+	echo ""
 
-echo "T: $a"
-echo "Z: $b"
-echo "Y: $c"
-echo "X: $d"
+	a=$(echo "10 k $1 $2 $3 $4 $5 $6 $7" | sed -E 's/\?//' )
+
+else
+
+	input=$(echo "10 k $1 $2 $3 $4 $5 $6 $7 f" | sed -E 's/,/\./' | sed -E 's/([0-9])k/\1 1000 \* /' | sed -E 's/([0-9])m/\1 1000000 \* /' )
+	output=$(dc -e "$input")
+
+	a=$(echo $output | awk '{print $4}')
+	b=$(echo $output | awk '{print $3}')
+	c=$(echo $output | awk '{print $2}')
+	d=$(echo $output | awk '{print $1}')
+
+	echo "T: $a"
+	echo "Z: $b"
+	echo "Y: $c"
+	echo "X: $d"
+
+fi
 
 read -p "> " my_var
 
-dca 10 k $a $b $c $d "${my_var}"
+dca $a $b $c $d "${my_var}"
 

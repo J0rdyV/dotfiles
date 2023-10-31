@@ -47,7 +47,7 @@ autocmd BufRead,BufNewFile *.twig set syntax=html
 autocmd BufRead,BufNewFile *.md,*.txt set wrap linebreak nonumber columns=80 filetype=markdown
 
 " Remove trailing
-autocmd FileType c,cpp,css,java,html,php,vimwiki,md,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,css,java,html,php,vimwiki,md,markdown,sql autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Restore cursor position
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -65,6 +65,8 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	map <F7> :setlocal spell! spelllang=nl<CR>
 	map <F8> :setlocal spell! spelllang=en_gb<CR>
 
+	map <F9> :normal ggyG''<CR>
+
 	" Map Ctrl-Backspace to delete the previous word in insert mode.
 	imap <C-H> <C-W>
 
@@ -73,6 +75,7 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 
 	" Find in files
 	nnoremap <Leader>f :new \| terminal!rg -i 
+	nnoremap <Leader>g :new \| terminal!find -name '**'<Left><Left>
 
 	" Comment line
 	nnoremap gc :normal I# <CR>
@@ -116,6 +119,9 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
+
+	" Stop using ESC!
+	inoremap <ESC> <Space>
 
 function! ReformatHTML()
 	:s/<[^>]*>/\r&\r/g

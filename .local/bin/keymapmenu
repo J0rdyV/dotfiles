@@ -1,1 +1,2 @@
+#!/bin/sh
 $(cat ~/.local/share/keymaps | dmenu -l 50 | awk '{ print $4 }') | eval

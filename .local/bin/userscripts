@@ -1,0 +1,5 @@
+#!/bin/sh
+SCRIPT=$(ls ~/.local/bin/ | dmenu)
+if [ -n "$SCRIPT" ]; then
+	eval $SCRIPT
+fi
