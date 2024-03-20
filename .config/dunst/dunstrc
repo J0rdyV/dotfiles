@@ -10,8 +10,8 @@
     padding = 15
     horizontal_padding = 8
     text_icon_padding = 0
-    # font = Cascadia Code 14
-    font = Terminus 14
+    font = Cascadia Code SemiLight 12
+    # font = Terminus 14
     line_height = 0
     min_icon_size = 0
     max_icon_size = 16

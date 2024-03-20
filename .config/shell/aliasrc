@@ -50,8 +50,11 @@ alias \
 	xr="sudo xbps-remove -R" \
 	xq="xbps-query" \
 	z="zathura" \
-	tr="timew" \
+	tw="timew" \
 	t="task" \
+	rmf='rm "$(fzf)"'\
+	vimfzf='vim "$(fzf)"'\
+	mpm="mpv --no-video"\
 
 # Set personal aliases
 alias \
@@ -63,8 +66,10 @@ alias \
 	ts="ts '[%Y-%m-%d %H:%M:%S]'" \
 	vim_eisenhower="vim 4 -c 'split 2' -c 'vsplit 1' -c 'wincmd j' -c 'vsplit 3' -c 'wincmd k'" \
 	figlet="figlet -f slant" \
-	fortune="fortune oblique-strategies" \
+	fortuneob="fortune oblique-strategies" \
+	pacman_autoremove="pacman -Rcs $(pacman -Qdtq)" \
 
+# work
 alias \
 	dc_start='docker-compose up -d' \
 	dc_stop='docker-compose stop' \
@@ -76,3 +81,7 @@ alias \
 	akeneo_queue='bin/docker/console messenger:consume ui_job import_export_job data_maintenance_job --env=prod' \
 	akeneo_reset_indexes='bin/docker/console akeneo:elasticsearch:reset-indexes && bin/docker/console pim:product:index --all && bin/docker/console pim:product-model:index --all'
 
+# enable failsafes
+alias \
+	newsboat='failsafe newsboat' \
+	neomutt='failsafe neomutt' \

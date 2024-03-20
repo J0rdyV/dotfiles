@@ -77,7 +77,7 @@ do
 
 	! $MUTE && play_notification
 
-	echo "* $(date) - 25min pomodoro completed" >> ~/.config/nvim/vimwiki/diary/$(date '+%Y-%m-%d').md
+	echo "x $(date) - 25min pomodoro completed" >> ~/.config/nvim/vimwiki/diary/$(date '+%Y-%m-%d').md
 
 	if $INTERACTIVE; then
 		read -d '' -t 0.001

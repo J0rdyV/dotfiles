@@ -1,0 +1,3 @@
+#!/bin/sh
+choice=$( kjv -l | dmenu | sed -E 's/.*\((.*)\).*/\1/' )
+st_float -e kjv $choice

@@ -1,2 +1,2 @@
 #!/bin/sh
-killall pomodoro && echo "" > /tmp/pomodoro
+killall pomodoro && rm /tmp/pomodoro

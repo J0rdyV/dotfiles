@@ -1,1 +1,2 @@
-pomodoro -s > /tmp/pomodoro$1
+#!/bin/sh
+termdown -s 25m --no-figlet -o /tmp/pomodoro && echo "* $(date) - 25min pomodoro completed" >> ~/.config/nvim/vimwiki/diary/$(date '+%Y-%m-%d').md

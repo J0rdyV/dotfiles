@@ -16,7 +16,7 @@ export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export VISUAL='nvim'
 export TERMINAL="st"
-export BROWSER="qutebrowser"
+export BROWSER="brave"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -56,7 +56,7 @@ export LYNX_CFG="${XDG_CONFIG_HOME:-$HOME/.config}/lynx/lynx.cfg"
 
 # Other program settings:
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
-
+export MAILCHECK=0 # stop checking if i have mail
 export _JAVA_AWT_WM_NONREPARENTING=1
 export JAVA_HOME="$HOME/.config/java"
 

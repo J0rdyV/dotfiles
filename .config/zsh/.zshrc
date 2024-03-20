@@ -65,5 +65,10 @@ bindkey -M vicmd v edit-command-line
 # Ctrl+Backspace to remove a word
 bindkey '^H' backward-kill-word
 
+eval echo
+#eval fortune dhammapada
+eval fortune matrix
+#eval fortune oblique-strategies
+
 # eval "$(ssh-agent)"
 export GPG_TTY=$(tty)

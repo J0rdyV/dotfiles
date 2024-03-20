@@ -3,6 +3,7 @@
 refresh-on-startup no
 max-items 0
 show-read-feeds no
+show-read-articles no
 
 external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 

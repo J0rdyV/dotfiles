@@ -1,0 +1,2 @@
+#!/bin/sh
+failsafe firefox --private-window 'file:///home/jordy/packages/new-tab/index.html'

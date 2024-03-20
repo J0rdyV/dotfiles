@@ -1,1 +1,2 @@
+#!/bin/sh
 st -g 110x30 -t lf -c lf -e lf

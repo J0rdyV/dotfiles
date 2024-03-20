@@ -1,0 +1,2 @@
+#!/bin/sh
+st -c float -f 'Terminus:size=12' $@

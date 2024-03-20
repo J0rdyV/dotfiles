@@ -29,5 +29,18 @@
 ( Define full ascii text )
 : asciiforth	forthl1 forthl2 forthl3 forthl4 forthl5 cr ;
 
+: factorial		1 swap 1 do i 1+ * loop ;
+: sum-integers	0 swap 1 do i + loop ;
+: fibonacci		0 1 2dup 0 do over over + swap 2 pick 1+ loop drop ;
+
 ( Print text on startup )
 asciiforth cr
+
+( Yes, gForth supports an internal BLOCK editor. Start gforth )
+
+( type: use blocked.fb )
+( type: 1 load )
+( type editor )
+( `words` will show the editor words: )
+( s b n bx nx qx dl il f y r d i t 'par 'line 'rest c a m  ok )
+( type: 0 l to list screen 0 which describes the editor, )

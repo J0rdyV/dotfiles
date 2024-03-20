@@ -1,5 +1,10 @@
 #!/bin/sh
 while true; do
-	xsetroot -name "$(date '+ %H:%M ')"
+	FILE='/tmp/pomodoro'
+	if [ -f $FILE ]; then
+		xsetroot -name " $(if [ $(cat /sys/class/power_supply/BAT0/capacity) -lt 20 ]; then echo 'Battery CRITICAL '; fi)$(cat $FILE | head -n 1) of work left "
+	else
+		xsetroot -name " $(if [ $(cat /sys/class/power_supply/BAT0/capacity) -lt 20 ]; then echo 'Battery CRITICAL '; fi)$(date '+%H:%M ')"
+	fi
 	sleep 30
 done
