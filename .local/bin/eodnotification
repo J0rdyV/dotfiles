@@ -1,9 +1,10 @@
 #!/bin/sh
 
-chosen=$(echo '' | dmenu)
+FILE="${XDG_DATA_HOME:-$HOME/.local/share}/eodnotification"
+CHOSEN=$(cat $FILE | dmenu)
 
 # Exit if none chosen.
-[ -z "$chosen" ] && exit
+[ -z "$CHOSEN" ] && exit
 
- echo -n $chosen > "${XDG_DATA_HOME:-$HOME/.local/share}/eodnotification"
+echo -n $CHOSEN > $FILE
 

@@ -58,7 +58,7 @@ export LYNX_CFG="${XDG_CONFIG_HOME:-$HOME/.config}/lynx/lynx.cfg"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export MAILCHECK=0 # stop checking if i have mail
 export _JAVA_AWT_WM_NONREPARENTING=1
-export JAVA_HOME="$HOME/.config/java"
+export JAVA_HOME="/usr/lib/jvm/java-22-openjdk"
 
 # Switch escape and caps if tty and no passwd required:
 # sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null

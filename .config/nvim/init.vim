@@ -27,14 +27,16 @@ map j gj
 map k gk
 map <F7> :setlocal spell! spelllang=nl<CR>
 map <F8> :setlocal spell! spelllang=en_gb<CR>
-map <F9> :normal!ggVGy
+map <F9> :normal!ggVGy<CR>
 let mapleader = " "
 nnoremap <Leader>p :e .<CR>
-nnoremap <Leader>f :new \| terminal!rg -i 
+nnoremap <Leader>f :new \| terminal!rg --no-ignore -i<Space>
 nnoremap <Leader>g :new \| terminal!find -name '**'<Left><Left>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>n :bn<CR>
-vnoremap R :w !$SHELL<cr>
-vnoremap O :w !$BROWSER<cr>
+nnoremap <leader>t yiw:term!trans -no-ansi <C-r>"<CR>
+vnoremap <leader>t y:term!trans -no-ansi '<C-r>"'<CR>
+vnoremap R :w !$SHELL<CR>
+vnoremap O :w !$BROWSER<CR>
 vnoremap . :normal .<CR>
 inoremap <ESC> <Space>
