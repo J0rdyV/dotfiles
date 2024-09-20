@@ -4,7 +4,7 @@ FILE=diary/$(date '+%Y-%m-%d').md
 
 if [ ! -f $FILE ]; then
 	echo '' > $FILE
-	echo $(date '+%d.%m.' | sed 's/\.0/\./' | sed 's/^0//')$(date '+%a' | cut -c1) >> $FILE
+	echo $(date '+%Y-%m-%d') >> $FILE
 	echo '' >> $FILE
 	cat diary/$(ls diary | tail -n 2 | head -n 1) | grep -e '^ *\.' >> $FILE
 	sed -i -E 's/^( *)\. /\1> /g' diary/$(ls diary | tail -n 2 | head -n 1)

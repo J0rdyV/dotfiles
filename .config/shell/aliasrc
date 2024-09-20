@@ -24,8 +24,12 @@ alias \
 	l="ls -l" \
 	la="ls -la" \
 	ll="ls -la" \
-	cal="cal -m"\
-	d="date --iso-8601=seconds"
+	cal="cal -m" \
+	d="date --iso-8601=seconds" \
+	ed="ed --prompt='> '" \
+	lynx="lynx -vikeys" \
+	chrome="chromium" \
+	browser="chromium" \
 
 # Colorize commands when possible.
 alias \
@@ -55,6 +59,7 @@ alias \
 	rmf='rm "$(fzf)"'\
 	vimfzf='vim "$(fzf)"'\
 	mpm="mpv --no-video"\
+	lf=". ~/.local/bin/lfcd"\
 
 # Set personal aliases
 alias \
@@ -76,12 +81,16 @@ alias \
 	dc_stop_all='docker stop $(docker container ls -q)' \
 	dc_remove='docker-compose down' \
 	dc_test='docker-compose exec fpm vendor/bin/phpspec run -vv' \
+	dc_bash='docker-compose exec fpm bash' \
 	dc_update='docker-compose pull && docker-compose up -d --remove-orphans' \
 	yarn_watch='docker-compose run -u node --rm -e YARN_REGISTRY -e PUPPETEER_SKIP_CHROMIUM_DOWNLOAD node yarn run webpack-dev --watch' \
 	akeneo_queue='bin/docker/console messenger:consume ui_job import_export_job data_maintenance_job --env=prod' \
-	akeneo_reset_indexes='bin/docker/console akeneo:elasticsearch:reset-indexes && bin/docker/console pim:product:index --all && bin/docker/console pim:product-model:index --all'
+	akeneo_reset_indexes='bin/docker/console akeneo:elasticsearch:reset-indexes && bin/docker/console pim:product:index --all && bin/docker/console pim:product-model:index --all' \
+	'bin/console'='bin/docker/console'
 
 # enable failsafes
-alias \
-	newsboat='failsafe newsboat' \
-	neomutt='failsafe neomutt' \
+#alias \
+#	newsboat='failsafe newsboat' \
+#	neomutt='failsafe neomutt' \
+#	firefox_p='failsafe firefox_p' \
+#	firefox_y='failsafe firefox_y' \

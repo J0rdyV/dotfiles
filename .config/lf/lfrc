@@ -16,7 +16,7 @@ cmd open ${{
 	case $(file --mime-type "$(readlink -f $f)" -b) in
 		application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
 		#image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-		text/*|application/json|inode/x-empty) $EDITOR $fx;;
+		text/*|application/json|inode|application/x-empty|application/x-ndjson) $EDITOR $fx;;
 		#image/*) feh $fx;;
 		image/*) feh $f & >/dev/null 2>&1 ;;
 		audio/*) mpv --no-video $fx ;;
@@ -28,10 +28,19 @@ cmd open ${{
 	esac
 }}
 
+cmd trash %{{
+	mapfile -t files <<< "$fx"
+	trash-put "${files[@]}"
+}}
+
+cmd trash_undo %{{
+}}
+
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
 map g top
-map D delete
+map D trash
+map u trash_undo
 map E extract
 map C copyto
 map M moveto

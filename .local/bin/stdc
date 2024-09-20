@@ -1,1 +1,1 @@
-st -i -g 34x6+800+300 -t "stdc" -c "stdc" -e sh -c "dca"
+st -i -g 34x6+800+300 -f "Terminus:size=18:antialias=true:autohint=true" -t "stdc" -c "stdc" -e sh -c "dca"

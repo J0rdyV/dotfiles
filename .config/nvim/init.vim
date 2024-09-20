@@ -15,8 +15,10 @@ set laststatus=0
 set tabstop=4
 set shiftwidth=4
 "set noswapfile
+colorscheme vim
 hi LineNr ctermfg=7
 hi Statement ctermfg=3
+"hi Visual cterm=reverse
 
 autocmd FileType markdown,text set wrap linebreak nonumber columns=80 filetype=markdown
 autocmd FileType twig set syntax=html
@@ -30,7 +32,7 @@ map <F8> :setlocal spell! spelllang=en_gb<CR>
 map <F9> :normal!ggVGy<CR>
 let mapleader = " "
 nnoremap <Leader>p :e .<CR>
-nnoremap <Leader>f :new \| terminal!rg --no-ignore -i<Space>
+nnoremap <Leader>f :new \| terminal!rg --no-ignore -i<Space>''<Left>
 nnoremap <Leader>g :new \| terminal!find -name '**'<Left><Left>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>n :bn<CR>

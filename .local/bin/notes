@@ -1,5 +1,6 @@
 #!/bin/sh
 NOTES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/notes"
+cd $NOTES_DIR
 if [ $(tty) ] && [ -z $1 ]; then
 	NOTE=$(ls -t $NOTES_DIR | fzf --bind enter:accept-or-print-query)
 	if [ -n "$NOTE" ]; then
@@ -8,11 +9,14 @@ if [ $(tty) ] && [ -z $1 ]; then
 			echo 'Deleting empty file'
 			rm "$NOTES_DIR/$NOTE"
 		fi
+		eval "notes"
 	fi
 else
-	NOTE=$(ls -t $NOTES_DIR | dmenu -fn 'Terminus:size=12' -l 30 -p 'Category ' )
+	#NOTE=$(ls -t $NOTES_DIR | dmenu -fn 'Terminus:size=12' -l 30 -p 'Fleeting Notes ' )
+	NOTE=$(ls -t $NOTES_DIR | dmenu -l 30 -p 'Fleeting Notes ' )
 	if [ -n "$NOTE" ]; then
-		st -f 'Terminus:size=12' -t notes -c notes -e sh -c "$EDITOR $NOTES_DIR/$NOTE"
+		#st -f 'Terminus:size=12' -t notes -c notes -e sh -c "$EDITOR $NOTES_DIR/$NOTE"
+		st -t notes -c notes -e sh -c "$EDITOR $NOTES_DIR/$NOTE"
 		if [ -f "$NOTES_DIR/$NOTE" ] && [ "$(cat $NOTES_DIR/$NOTE)" == "" ]; then
 			echo 'Deleting empty file'
 			rm "$NOTES_DIR/$NOTE"

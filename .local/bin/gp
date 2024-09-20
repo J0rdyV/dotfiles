@@ -1,0 +1,5 @@
+#!/bin/sh
+# Push to current origin branch
+COMMAND="git push origin $(git status | head -n 1 | sed 's/On branch //g')"
+echo "Running: $COMMAND"
+eval $COMMAND

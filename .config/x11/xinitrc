@@ -1,17 +1,21 @@
 #!/bin/sh
 
-redshift -O 5500k &			# Remove blue light
-clipmenud &					# Enable clipboard history
-xcompmgr &					# Enable opacity
-numlockx &					# Set numlock
-dunst &						# Notifications
-dwmtime &					# Put time in head
+redshift -O 5000k &   # Remove blue light
+clipmenud &           # Enable clipboard history
+xcompmgr &            # Enable opacity
+numlockx &            # Set numlock
+dunst &               # Notifications
+dwmtime &             # Put time in head
 tester &
 
-fixscreen &					# Run several tweaks
+fixscreen &           # Display tweaks
 
-v4l2-ctl -d /dev/video0 -c saturation=73 &	# fix webcam
-v4l2-ctl -d /dev/video0 -c brightness=160 &
+# fix webcam
+v4l2-ctl -d /dev/video0 -c saturation=80 &
+v4l2-ctl -d /dev/video0 -c brightness=170 &
 v4l2-ctl -d /dev/video0 -c contrast=55 &
 
-ssh-agent dwm				# Start WM
+# fix gnome-keyring
+dbus-update-activation-environment --all
+
+ssh-agent dwm         # Start WM

@@ -70,7 +70,7 @@ export GPG_TTY=$(tty)
 # gruvbox colors and font in tty
 if [ "$TERM" = "linux" ]; then
     setfont ter-p20n
-    echo -en "\e]P0000000" #black
+    echo -en "\e]P032302f" #black
     echo -en "\e]P8928374" #darkgrey
     echo -en "\e]P1CC241D" #darkred
     echo -en "\e]P9FB4934" #red

@@ -1,0 +1,36 @@
+#!/bin/sh
+SPACES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/spaces"
+cd $SPACES_DIR
+if [ $(tty) ] && [ -z $1 ]; then
+	SPACE=$(ls -t $SPACES_DIR | fzf --bind enter:accept-or-print-query)
+	if [ -n "$SPACE" ]; then
+		if [ ! -f "$SPACES_DIR/$SPACE" ]; then
+			SPACECENTER=$(printf '%-9s' "$SPACE" | sed -e 's/ /./g')
+			cp "$SPACES_DIR/default.space" "$SPACES_DIR/$SPACE.space"
+			sed -i -e "s/xxxxxxxxx/$SPACECENTER/g" "$SPACES_DIR/$SPACE.space"
+			SPACE="$SPACE.space"
+		fi
+		eval "$EDITOR $SPACES_DIR/$SPACE \"+call cursor(500, 501)\""
+
+		if [ -f "$SPACES_DIR/$SPACE" ] && [ "$(cat $SPACES_DIR/$SPACE)" == "" ]; then
+			echo 'Deleting empty file'
+			rm "$SPACES_DIR/$SPACE"
+		fi
+		eval "space"
+	fi
+else
+	SPACE=$(ls -t $SPACES_DIR | dmenu -fn 'Terminus:size=12' -l 30 -p 'Space ' )
+	if [ -n "$SPACE" ]; then
+		if [ ! -f "$SPACES_DIR/$SPACE" ]; then
+			SPACECENTER=$(printf '%-9s' "$SPACE" | sed -e 's/ /./g')
+			cp "$SPACES_DIR/default.space" "$SPACES_DIR/$SPACE.space"
+			sed -i -e "s/xxxxxxxxx/$SPACECENTER/g" "$SPACES_DIR/$SPACE.space"
+			SPACE="$SPACE.space"
+		fi
+		st -f 'Terminus:size=12' -t spaces -c spaces -e sh -c "$EDITOR $SPACES_DIR/$SPACE"
+		if [ -f "$SPACES_DIR/$SPACE" ] && [ "$(cat $SPACES_DIR/$SPACE)" == "" ]; then
+			echo 'Deleting empty file'
+			rm "$SPACES_DIR/$SPACE"
+		fi
+	fi
+fi

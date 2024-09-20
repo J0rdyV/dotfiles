@@ -1,0 +1,54 @@
+#!/bin/sh
+alphabeth='abcdefghijklmnopqrstuvwxyz'
+arg=$2
+input=$1
+start=${input:0:-1}
+number=${input:0-1}
+re='^[0-9]+$'
+
+strindex() {
+  x="${1%%"$2"*}"
+  [[ "$x" = "$1" ]] && echo -1 || echo "${#x}"
+}
+
+# increment the current number 1/2 > 1/3
+inc() {
+	if ! [[ $number =~ $re ]] ; then
+		index=$(strindex $alphabeth $number)
+		new=${alphabeth:$(($index+1)):1}
+		# flow for numbering after z
+		#if [[ $new == '' ]] ; then
+			#new='aa'
+		#fi
+	else
+		new=$(($number+1))
+	fi
+	echo "$start$new"
+}
+
+# append a new not to the current 1/2 > 1/2a
+app() {
+	if [[ $number =~ $re ]] ; then
+		new='a'
+	else
+		new='1'
+	fi
+	echo "$input$new"
+}
+
+# just return normal number
+norm() {
+	echo "$input"
+}
+
+run() {
+	if [[ $arg == 'a' ]] ; then
+		app
+	elif [[ $arg == 'i' ]] ; then
+		inc
+	else
+		norm
+	fi
+}
+
+run
