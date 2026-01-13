@@ -1,4 +1,8 @@
 #!/bin/sh
-notify-send "🔋
-$(cat /sys/class/power_supply/BAT0/capacity)% battery
+message="$(cat /sys/class/power_supply/BAT0/capacity)% battery
 $(cat /sys/class/power_supply/BAT0/power_now | awk '{print "Consuming " $1*10^-6 " W"}')"
+if [ $(tty) ] && [ -z $1 ]; then
+	echo "$message"
+else
+	notify-send "🔋 $message"
+fi

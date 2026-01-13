@@ -1,0 +1,5 @@
+#!/bin/sh
+FILE="git.patch"
+xclip -o > $FILE
+git apply $FILE
+rm -f $FILE

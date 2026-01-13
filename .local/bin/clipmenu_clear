@@ -1,0 +1,4 @@
+#!/bin/sh
+killall 'bash /usr/bin/clipmenud'
+rm -rf $XDG_RUNTIME_DIR/clipmenu*
+clipmenud

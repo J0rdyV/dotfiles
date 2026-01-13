@@ -1,0 +1,4 @@
+#!/bin/sh
+file="${HOME}/jq.json"
+xclip -o | jq > $file
+nvim $file

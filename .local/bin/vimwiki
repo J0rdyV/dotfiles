@@ -1,14 +1,15 @@
 #! /bin/sh
 cd ${XDG_CONFIG_HOME}/nvim/vimwiki/
 FILE=diary/$(date '+%Y-%m-%d').md
+YESTERDAY=diary/$(ls diary | tail -n 1)
 
 if [ ! -f $FILE ]; then
 	echo '' > $FILE
-	echo $(date '+%Y-%m-%d') >> $FILE
+	date '+%Y-%m-%d' >> $FILE
 	echo '' >> $FILE
-	cat diary/$(ls diary | tail -n 2 | head -n 1) | grep -e '^ *\.' >> $FILE
-	sed -i -E 's/^( *)\. /\1> /g' diary/$(ls diary | tail -n 2 | head -n 1)
+	grep -e '^ *\.' $YESTERDAY >> $FILE
+	sed -i -E 's/^( *)\. /\1> /g' $YESTERDAY
 fi
 
-${EDITOR} diary/$(date '+%Y-%m-%d').md
+${EDITOR} $FILE
 

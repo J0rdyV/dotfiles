@@ -1,3 +1,91 @@
-#! /bin/sh
-cd ${XDG_CONFIG_HOME}/zettelkasten/
-./zettelkasten
+#!/bin/sh
+cd "${XDG_DATA_HOME:-$HOME/.local/share}/zettelkasten/"
+
+run() {
+	#input=($(ls | sort -V | sed -e 's/\.md$//' | fzf --preview='less {}.md' --preview-window=up --bind space:jump,jump:accept,enter:accept-or-print-query | head -n 1))
+	#input=($(find -name '*' -type f | sort -V | xargs head -q -n 1 | sed -e 's/^# //g' | fzf --layout=reverse --preview="echo "{}" | sed -e 's/ .*//' | xargs less" --preview-window=down --bind space:jump,jump:accept,enter:accept-or-print-query | sed -e 's/ .*//'))
+	input=$(find -name '*' -type f | sort -V | xargs head -q -n 1 | sed -e 's/^# //g' | fzf --footer='Zettelkasten' --ghost='enter / ctrl-a / ctrl-d / ctrl-u / ctrl-r' --preview="echo "{}" | sed -e 's/ .*//' | xargs less" --preview-window=up --bind 'space:jump,jump:accept,enter:print(e)+accept-or-print-query,ctrl-a:print(a)+accept-or-print-query,ctrl-d:print(d)+accept-or-print-query,ctrl-u:print(u)+accept-or-print-query,ctrl-r:print(r)+accept-or-print-query')
+	op=$(echo "$input" | head -n 1)
+	file=$(echo "$input" | tail -n 1 | sed -e 's/ .*//')
+	#file=${input[N-0]}
+	#op=${input[N-1]}
+	case $file in
+
+		q)
+			# exit
+			;;
+
+		search)
+			read -p "Search> " search
+			searchresult=($(rg --no-ignore -i "$search" | sort -V | sed -e 's/\.md$//' | fzf --bind space:jump,jump:accept,enter:accept-or-print-query | head -n 1 | sed 's/\.md.*//'))
+			# add if null only run zettel again
+			if [[ $searchresult != 'q' ]] ; then
+				$EDITOR ${searchresult%:*}
+				zettelkasten
+			fi
+			;;
+
+		*)
+			# (I)ncrement/new, is option for new topics
+			#read -p "(A)ppend To, (I)ncrement/new, (E)dit, (D)elete, (Q)uit? " op
+			#read -p "(A)ppend, (E)dit, (U)pdate list, (Q)uit? " op
+			new="$(numbering ${file} $op)"
+
+			case $op in
+
+				i | a)
+					while [ -f "$new" ]
+					do
+						new="$(numbering ${new} i)"
+					done
+
+					printf '# %-6s-\n' "$new" > $new
+					echo "--------------------------------------------------------------------------------" >> $new
+					$EDITOR $new
+					zettelkasten
+					;;
+
+				r)
+					puthere=$(find -name '*' -type f | sort -V | xargs head -q -n 1 | sed -e 's/^# //g' | fzf --footer='Select where you want to put the excisting file after' --ghost='enter' --preview="echo "{}" | sed -e 's/ .*//' | xargs less" --preview-window=up --bind 'space:jump,jump:accept,enter:print(e)+accept-or-print-query')
+					putherefile=$(echo "$puthere" | tail -n 1 | sed -e 's/ .*//')
+					while [ -f "$putherefile" ]
+					do
+						putherefile="$(numbering ${putherefile} i)"
+					done
+
+					echo "mv $new $putherefile"
+
+					# should update the file header to new number
+					# add line - old location was ...
+					# put new file on old location with ref to new ?
+
+					#$EDITOR $new
+					#zettelkasten
+					;;
+
+				e)
+					$EDITOR $new
+					zettelkasten
+					;;
+
+				d)
+					rm -i $new
+					zettelkasten
+					;;
+
+				u)
+					echo '' >> $new
+					head -q -n 1 $(ls | grep -e "^$new..*") >> $new
+					$EDITOR $new
+					zettelkasten
+					;;
+
+				q | *)
+					;;
+			esac
+			;;
+
+	esac
+}
+
+run

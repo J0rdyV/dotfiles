@@ -1,0 +1,6 @@
+#!/bin/sh
+while true; do
+	FILE="$HOME/.local/share/dwmtime/news"
+	newsboat -x print-unread | sed -E 's/ unread articles/a \//' | sed -E 's/^/ /g' > $FILE
+	sleep 120
+done

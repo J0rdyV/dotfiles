@@ -1,0 +1,7 @@
+#!/bin/sh
+sudoku=/tmp/sudoku
+qqwing --generate 1 --difficulty simple --solution > $sudoku
+game=/tmp/sudoku_game
+head -n 12 $sudoku > $game
+echo "Check solution at $sudoku" >> $game
+st_float -e "$EDITOR $game"

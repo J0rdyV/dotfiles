@@ -10,9 +10,9 @@ then
     do
         id=${line#*=}
         notify-send --urgency=low "🌳 starting queue..."
-        cd "$HOME/personal"
-        mkdir queue
-        cd queue
+        cd "$HOME/personal/queue"
+        #mkdir queue
+        #cd queue
         urltype=$(echo $line | awk '{print $1}')
         url=$(echo $line | awk '{print $3}')
         # Send a curl request to the link
@@ -24,7 +24,7 @@ then
             $HOME/.local/bin/ytmp3split $url
         elif [ $urltype = "video" ]
         then
-            yt-dlp $url
+            yt-dlp "$url"
         fi
         # Remove the link from the file
         sed -i "/$id/d" $quefile

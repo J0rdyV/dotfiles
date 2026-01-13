@@ -1,0 +1,10 @@
+#!/bin/sh
+while true; do
+	FILE="$HOME/.local/share/dwmtime/batt"
+	if [ $(cat /sys/class/power_supply/BAT0/capacity) -lt 20 ]; then
+		echo ' 🟡 Battery CRITICAL /' > $FILE
+	else
+		echo '' > $FILE
+	fi
+	sleep 60
+done

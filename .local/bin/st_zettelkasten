@@ -1,0 +1,2 @@
+#!/bin/sh
+st -c float -g 90x30 -f 'Cascadia Code:style=SemiLight:size=12' zettelkasten

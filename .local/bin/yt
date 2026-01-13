@@ -1,3 +1,18 @@
-echo -n "Please enter a valid youtube url: "
-read url
-youtube-dl --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3 -i $url
+#!/bin/sh
+cd /home/jordy/to_check/watch
+if [ -n $1 ]; then
+	VAR=$(xclip -o)
+else
+	VAR=$1
+fi
+
+# check if it is a correct url
+regex='(https?|ftp|file)://[-[:alnum:]\+&@#/%?=~_|!:,.;]*[-[:alnum:]\+&@#/%=~_|]'
+if [[ $VAR =~ $regex ]]
+then
+	notify-send -t 2000 -u low "Downloading $VAR" &
+	yt-dlp --add-metadata --xattrs --embed-thumbnail --audio-quality 0 -i $VAR
+	notify-send -t 2000 -u low "Finished $VAR" &
+else
+	notify-send -t 2000 -u low "Unable to download, no url" &
+fi

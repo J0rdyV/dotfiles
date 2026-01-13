@@ -1,7 +1,13 @@
 #! /bin/sh
 brfile='/sys/class/backlight/amdgpu_bl1/brightness'
 case "$1" in
-	+) cat $brfile | sed -e 's/$/ 20 + p/' | sudo dc > $brfile;;
-	-) cat $brfile | sed -e 's/$/ 20 - p/' | sudo dc > $brfile;;
+	+)
+		amount=$(sed -e 's/$/ 3000 + p/' $brfile | dc)
+		echo $amount | sudo tee $brfile
+		;;
+	-)
+		amount=$(sed -e 's/$/ 3000 - p/' $brfile | dc)
+		echo $amount | sudo tee $brfile
+		;;
 	*) sudo echo $1 > $brfile;;
 esac

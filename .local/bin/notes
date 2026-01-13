@@ -12,11 +12,11 @@ if [ $(tty) ] && [ -z $1 ]; then
 		eval "notes"
 	fi
 else
-	#NOTE=$(ls -t $NOTES_DIR | dmenu -fn 'Terminus:size=12' -l 30 -p 'Fleeting Notes ' )
-	NOTE=$(ls -t $NOTES_DIR | dmenu -l 30 -p 'Fleeting Notes ' )
+	NOTE=$(ls -t $NOTES_DIR | dmenu -fn 'Cascadia Code:style=SemiLight:size=12' -l 30 -p 'Fleeting Notes ' )
+	#NOTE=$(ls -t $NOTES_DIR | dmenu -fn 'Cascadia Code:style=SemiLight:size=14' -l 30 -p 'Fleeting Notes ' )
 	if [ -n "$NOTE" ]; then
-		#st -f 'Terminus:size=12' -t notes -c notes -e sh -c "$EDITOR $NOTES_DIR/$NOTE"
-		st -t notes -c notes -e sh -c "$EDITOR $NOTES_DIR/$NOTE"
+		st -f 'Cascadia Code:style=SemiLight:size=12' -t notes -c notes -e sh -c "$EDITOR $NOTES_DIR/$NOTE"
+		#st -f 'Cascadia Code:style=SemiLight:size=14' -t notes -c notes -e sh -c "$EDITOR $NOTES_DIR/$NOTE"
 		if [ -f "$NOTES_DIR/$NOTE" ] && [ "$(cat $NOTES_DIR/$NOTE)" == "" ]; then
 			echo 'Deleting empty file'
 			rm "$NOTES_DIR/$NOTE"

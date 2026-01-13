@@ -33,6 +33,10 @@ setopt interactive_comments
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
+#append into history file
+setopt INC_APPEND_HISTORY
+#add timestamp for each entry
+setopt EXTENDED_HISTORY
 ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompdump-${(%):-%m}-${ZSH_VERSION}"
 
 # Load aliases and shortcuts if existent.
@@ -69,7 +73,7 @@ export GPG_TTY=$(tty)
 
 # gruvbox colors and font in tty
 if [ "$TERM" = "linux" ]; then
-    setfont ter-p20n
+    setfont ter-p22n
     echo -en "\e]P032302f" #black
     echo -en "\e]P8928374" #darkgrey
     echo -en "\e]P1CC241D" #darkred
@@ -88,3 +92,5 @@ if [ "$TERM" = "linux" ]; then
     echo -en "\e]PFEBDBB2" #white
     clear #for background artifacting
 fi
+
+source /etc/profile.d/plan9.sh

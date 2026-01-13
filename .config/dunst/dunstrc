@@ -3,15 +3,15 @@
 [global]
     follow = keyboard
     width = 300
-    height = 300
+    #height = 300
     origin = top-right
-    offset = 35x50
+    offset = 20x45
     separator_height = 3
     padding = 15
     horizontal_padding = 8
     text_icon_padding = 0
-    font = Cascadia Code SemiLight 12
-    # font = Terminus 14
+    # font = Cascadia Code SemiLight 14
+    font = Terminus 14
     line_height = 0
     min_icon_size = 0
     max_icon_size = 16
@@ -20,12 +20,24 @@
     timeout = 10
 
 [urgency_low]
-    frame_color = "#98971a"
+	# bruin
+    frame_color = "#cc241d"
 
 [urgency_normal]
-    frame_color = "#fabd2f"
+	# geel
+    frame_color = "#cc241d"
 
 [urgency_critical]
+	# rood
     frame_color = "#cc241d"
     timeout = 0
 
+
+# col_gray[]       = "#928374";
+# col_red[]        = "#cc241d";
+# col_green[]      = "#b8bb26";
+# col_yellow[]     = "#fabd2f";
+# col_blue[]       = "#83a598";
+# col_purple[]     = "#d3869b";
+# col_aqua[]       = "#8ec07c";
+# col_orange[]     = "#fe8019";

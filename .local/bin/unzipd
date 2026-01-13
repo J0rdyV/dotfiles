@@ -1,4 +1,4 @@
 #!/bin/sh
-zip=$1
-dir=${zip::-4}
-unzip -d $dir $zip
+zip="$1"
+dir="${zip::-4}"
+unzip -d "$dir" "$zip"

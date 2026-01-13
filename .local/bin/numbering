@@ -42,7 +42,9 @@ norm() {
 }
 
 run() {
-	if [[ $arg == 'a' ]] ; then
+	if [[ $arg != 'd' && $arg != 'e' && $number == '0' ]] ; then
+		inc
+	elif [[ $arg == 'a' ]] ; then
 		app
 	elif [[ $arg == 'i' ]] ; then
 		inc

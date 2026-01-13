@@ -1,6 +1,9 @@
-set recolor   
-set recolor-lightcolor \#32302f
+set recolor
+set recolor-lightcolor rgba(0,0,0,0)
+#set recolor-lightcolor \#32302f
 set recolor-darkcolor \#ebdbb2
 set recolor-keephue
-set default-bg \#32302f
+set default-bg rgba(50,48,47,0.7)
+#set default-bg \#32302f
 set recolor-reverse-video: true
+set guioptions none

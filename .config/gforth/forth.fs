@@ -5,7 +5,7 @@
 
 ( Define Stars )
 : star			42 emit ;
-: stars			0 do star loop ; 
+: stars			0 do star loop ;
 
 ( Define margin and padding )
 : margin		cr 10 spaces ;

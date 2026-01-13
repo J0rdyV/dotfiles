@@ -1,0 +1,2 @@
+#!/bin/sh
+st -f "Cascadia Code:style=SemiLight:size=14:antialias=true:autohint=true" $@
