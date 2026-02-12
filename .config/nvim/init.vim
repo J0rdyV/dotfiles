@@ -10,16 +10,31 @@ set ignorecase
 set undofile
 set nohlsearch
 set wildmode=longest,list,full
-set background=light
+set background=dark
 set laststatus=0
 set tabstop=4
 set shiftwidth=4
 "set noswapfile
+set termguicolors
 colorscheme vim
-hi LineNr ctermfg=7
-hi Statement ctermfg=3
-"hi Visual cterm=reverse
-hi ColorColumn ctermbg=15 ctermfg=0
+for f in split(glob('$XDG_CONFIG_HOME/nvim/plugins/*.vim'), '\n')
+    exe 'source' f
+endfor
+
+hi Normal ctermbg=none guibg=none
+
+" Blue brackets
+autocmd FileType markdown syntax match MarkdownBrackets /\[.\{-}\]/
+autocmd FileType markdown highlight MarkdownBrackets guifg=#83a598 ctermfg=109
+" Red Todo
+autocmd FileType markdown syntax match MarkdownToDo /^\./
+autocmd FileType markdown highlight MarkdownToDo guifg=#cc241d ctermfg=124 gui=bold
+" Green done
+autocmd FileType markdown syntax match MarkdownDone /^x/
+autocmd FileType markdown highlight MarkdownDone guifg=#98971a ctermfg=106 gui=bold
+" Purple moved
+autocmd FileType markdown syntax match MarkdownMoved /^[<>]/
+autocmd FileType markdown highlight MarkdownMoved guifg=#b16286 ctermfg=132 gui=bold
 
 autocmd FileType markdown,text set wrap linebreak nonumber columns=80 filetype=markdown
 autocmd FileType twig set syntax=html
